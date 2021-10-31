@@ -1,5 +1,5 @@
 import XMonad
-import XMonad.Hooks.EwmhDesktops (ewmh)
+import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
 import XMonad.Util.EZConfig
 
 import qualified Config.Bindings as BD
@@ -11,7 +11,7 @@ import qualified Config.ManageHook as MH
 import qualified Config.StartupHook as SH
 
 main :: IO ()
-main = xmonad . ewmh $ def
+main = xmonad . ewmhFullscreen . ewmh $ def
   { terminal           = "st -e tmux"
   , focusFollowsMouse  = True
   , focusedBorderColor = "#a54242"
