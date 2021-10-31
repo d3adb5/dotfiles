@@ -2,7 +2,6 @@ module Config.ManageHook (manageHook, scratchpads) where
 
 import XMonad hiding (manageHook, borderWidth)
 import XMonad.Hooks.InsertPosition
-import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Util.CenterRationalRect
 import XMonad.Util.NamedScratchpad
@@ -20,7 +19,6 @@ import Data.Ratio
 manageHook :: ManageHook
 manageHook = composeAll
   [ namedScratchpadManageHook scratchpads
-  , manageDocks
   , classNameIn webClassNames --> moveToWorkspace "web"
   , classNameIn dcClassNames --> moveToWorkspace "chat"
   , className =? "Gimp" --> moveToWorkspace "gimp"

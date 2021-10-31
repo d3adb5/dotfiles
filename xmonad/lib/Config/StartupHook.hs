@@ -1,7 +1,6 @@
 module Config.StartupHook (startupHook) where
 
 import XMonad hiding (startupHook)
-import XMonad.Hooks.ManageDocks (docksStartupHook)
 import XMonad.Util.SpawnNamedPipe (spawnNamedPipe)
 
 import Control.Monad (join)
@@ -10,8 +9,7 @@ import Control.Monad (join)
 -- change from `return ()` at some point.
 startupHook :: X ()
 startupHook
-    = docksStartupHook
-   <> setSupportedWithFullscreen
+    = setSupportedWithFullscreen
    <> spawnNamedPipe "xmobar" "xmopipe"
    <> join (asks $ logHook . config)
 
