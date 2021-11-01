@@ -72,7 +72,7 @@ fzf-git-commit() {
 }
 
 fzf-git-branch() {
-  local commits ret
+  local branches ret
   setopt localoptions noglobsubst noposixbuiltins pipefail 2>/dev/null
   branches=($(git for-each-ref --format='%(refname:short)' refs \
     | FZF_DEFAULT_OPTS="--height 40% $FZF_DEFAULT_OPTS --tiebreak=index" fzf \
