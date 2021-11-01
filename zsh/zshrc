@@ -57,6 +57,28 @@ mosh() {
   esac
 }
 
+fzf-git-branch-commit() {
+  local branch commits ret
+  setopt localoptions noglobsubst noposixbuiltins pipefail 2>/dev/null
+  branch=$(git for-each-ref --format='%(refname:short)' refs \
+    | FZF_DEFAULT_OPTS="--height 40% $FZF_DEFAULT_OPTS --tiebreak=index" fzf \
+        +m --preview 'git log --graph --color=always --oneline {}')
+  ret=$?
+  zle reset-prompt
+  if [ -z "$branch" ]; then
+    return $ret
+  fi
+  commits=($(git log --oneline "$branch" \
+    | FZF_DEFAULT_OPTS="--height 40% $FZF_DEFAULT_OPTS --tiebreak=index" fzf \
+        -m --preview 'git show --color=always --raw $(cut -d" " -f1 <<< {})' \
+    | cut -d' ' -f1)
+  )
+  ret=$?
+  LBUFFER="${LBUFFER}${commits[@]}"
+  zle reset-prompt
+  return $ret
+}
+
 fzf-git-commit() {
   local commits ret
   setopt localoptions noglobsubst noposixbuiltins pipefail 2>/dev/null
@@ -111,6 +133,8 @@ bindkey '\ew' backward-kill-word
 bindkey '^[^[[D' backward-word
 bindkey '^[^[[C' forward-word
 
+zle     -N   fzf-git-branch-commit
+bindkey '^N' fzf-git-branch-commit
 zle     -N   fzf-git-commit
 bindkey '^F' fzf-git-commit
 zle     -N   fzf-git-branch
