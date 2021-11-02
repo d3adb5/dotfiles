@@ -1,0 +1,16 @@
+the z shell
+===========
+
+Zsh is a shell designed for interactive use. I use it as my login shell instead
+of something like Bash due to how powerful it is, and the fact I spend most of
+my time in terminal emulators.
+
+The Zsh configuration found here will have a few niceties you could reuse on
+your own setup. They include:
+
+- Git repository detection & hints in the $PROMPT
+- ZLE widgets using fzf for Git
+- Fuzzy, smart case tab completion
+
+While the aliases and environment variables I use are particular for my setup,
+they can serve as example or reminders that some functionalities exist.
