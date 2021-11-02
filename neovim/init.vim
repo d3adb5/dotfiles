@@ -125,7 +125,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 		let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 		let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 		let g:UltiSnipsEditSplit = "vertical"
-		let g:UltiSnipsSnippetDirectories = ["UltiSnips"]
+		let g:UltiSnipsSnippetDirectories = ["UltiSnips", "snips"]
 
 	" }}}
 	" {{{ the nerd (file) tree

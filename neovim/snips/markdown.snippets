@@ -1,0 +1,15 @@
+snippet math "pandoc math front-matter" b
+---
+title: "${1:title}"
+subtitle: "${2:subtitle}"
+author: "${3:author}"
+papersize: a4
+header-includes:
+	- \usepackage{mathrsfs}
+	- \usepackage{mathtools}
+	- \usepackage[bottom,norule,perpage]{footmisc}
+	- \pagenumbering{gobble}
+...
+
+${0:Content}
+endsnippet
