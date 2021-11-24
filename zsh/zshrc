@@ -7,7 +7,7 @@ HISTSIZE=500000
 SAVEHIST=1000000
 
 stty start '^-' stop '^-'
-setopt interactivecomments appendhistory autocd extendedglob nomatch
+setopt interactivecomments appendhistory autocd nomatch
 unsetopt beep
 
 # {{{ vcs_info
