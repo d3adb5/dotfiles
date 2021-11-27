@@ -1,50 +1,48 @@
+util-fzf() {
+  FZF_DEFAULT_OPTS="--height 40% $FZF_DEFAULT_OPTS --tiebreak=index" fzf "$@"
+}
+
+util-in-git-repo() {
+  [[ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]] \
+    && return 0 || return 128
+}
+
+util-pick-branch() {
+  local references="$(git for-each-ref --format='%(refname:short)' refs)"
+  local logcmd='git log --color=always --graph --oneline {}'
+  util-fzf "$@" --preview "$logcmd" <<< "$references"
+}
+
+util-pick-commit() {
+  local showcmd='git show --color=always --raw $(cut -d" " -f1 <<< {})'
+  local commits="$(git log --oneline $target_branch)"
+  util-fzf "$@" --preview "$showcmd" <<< "$commits" | cut -d' ' -f1
+}
+
 fzf-git-pick-commit-from-branch() {
+  util-in-git-repo || { zle redisplay && return 128 }
   setopt localoptions noglobsubst noposixbuiltins pipefail 2>/dev/null
-  local branch commits ret
-  branch=$(git for-each-ref --format='%(refname:short)' refs \
-    | FZF_DEFAULT_OPTS="--height 40% $FZF_DEFAULT_OPTS --tiebreak=index" fzf \
-        +m --preview 'git log --graph --color=always --oneline {}')
-  ret=$?
-  zle reset-prompt
-  if [ -z "$branch" ]; then
-    return $ret
-  fi
-  commits=($(git log --oneline "$branch" \
-    | FZF_DEFAULT_OPTS="--height 40% $FZF_DEFAULT_OPTS --tiebreak=index" fzf \
-        -m --preview 'git show --color=always --raw $(cut -d" " -f1 <<< {})' \
-    | cut -d' ' -f1)
-  )
-  ret=$?
+  local branch=$(util-pick-branch +m); zle reset-prompt
+  [[ -n "$branch" ]] || { zle redisplay && return 0 }
+  local commits=($(target_branch="$branch" util-pick-commit -m))
   LBUFFER="${LBUFFER}${commits[@]}"
   zle reset-prompt
-  return $ret
 }
 
 fzf-git-pick-commit() {
+  util-in-git-repo || { zle redisplay && return 128 }
   setopt localoptions noglobsubst noposixbuiltins pipefail 2>/dev/null
-  local commits ret
-  commits=($(git log --oneline \
-    | FZF_DEFAULT_OPTS="--height 40% $FZF_DEFAULT_OPTS --tiebreak=index" fzf \
-        -m --preview 'git show --color=always --raw $(cut -d" " -f1 <<< {})' \
-    | cut -d' ' -f1)
-  )
-  ret=$?
+  local commits=($(util-pick-commit -m))
   LBUFFER="${LBUFFER}${commits[@]}"
   zle reset-prompt
-  return $ret
 }
 
 fzf-git-pick-branch() {
+  util-in-git-repo || { zle redisplay && return 128 }
   setopt localoptions noglobsubst noposixbuiltins pipefail 2>/dev/null
-  local branches ret
-  branches=($(git for-each-ref --format='%(refname:short)' refs \
-    | FZF_DEFAULT_OPTS="--height 40% $FZF_DEFAULT_OPTS --tiebreak=index" fzf \
-        -m --preview 'git log --graph --color=always --oneline {}' )
-  )
-  ret=$?
+  local branches=($(util-pick-branch -m))
   LBUFFER="${LBUFFER}${branches[@]}"
   zle reset-prompt
-  return $ret
 }
 
 zle     -N   fzf-git-pick-commit-from-branch
