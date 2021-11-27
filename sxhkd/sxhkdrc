@@ -1,0 +1,31 @@
+mod4 + p
+	dmenu_run
+
+XF86AudioLowerVolume
+	volume -d
+XF86AudioRaiseVolume
+	volume -i
+XF86AudioMute
+	volume -m
+
+Print
+	screenshot | ifne upload | ifne clip
+shift + Print
+	screenshot | ifne clip
+ctrl + Print
+	screenshot -s | ifne upload | ifne clip
+shift + ctrl + Print
+	screenshot -s | ifne clip
+
+mod4 + r
+	record
+mod4 + shift + r
+	record -s
+mod4 + alt + r
+	record -m
+mod4 + ctrl + r
+	record -l
+mod4 + ctrl + shift + r
+	record -l -s
+mod4 + ctrl + alt + r
+	record -l -m
