@@ -1,7 +1,7 @@
 set nocompatible
 set background=dark
 set smartindent noexpandtab tabstop=4 shiftwidth=4 textwidth=80
-set scrolloff=15 sidescrolloff=5 updatetime=750
+set scrolloff=15 sidescrolloff=5 updatetime=100
 set laststatus=2 fo+=t
 set ttimeoutlen=0
 set incsearch ruler nohlsearch splitbelow splitright number rnu
@@ -10,7 +10,6 @@ set foldmethod=marker ignorecase smartcase
 set listchars=tab:⁞\ ,trail:· list
 set cursorline hidden
 set wildignore=*.o,*.ho,*.hi,*.pdf,*.obj,*.jpg,*.png
-set updatetime=100
 set diffopt=internal,filler,closeoff,foldcolumn:0
 let mapleader="\<Tab>"
 
