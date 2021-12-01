@@ -29,7 +29,7 @@ manageHook = composeAll
   ]
   where
     webClassNames = ["Tor Browser"]
-    floatClassNames = ["Pqiv", "sun-awt-X11-XFramePeer", "Udiskie"]
+    floatClassNames = ["Pqiv", "sun-awt-X11-XFramePeer", "Udiskie", "fzfmenu"]
     dcClassNames = ["discord"]
     floatPropValues =
       [ ("WM_WINDOW_ROLE", "GtkFileChooserDialog")
