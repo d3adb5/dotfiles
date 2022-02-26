@@ -52,5 +52,10 @@ bindkey '^F' fzf-git-pick-commit
 zle     -N   fzf-git-pick-branch
 bindkey '^K' fzf-git-pick-branch
 
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
+if [[ -d /usr/share/fzf ]]; then
+  source /usr/share/fzf/completion.zsh
+  source /usr/share/fzf/key-bindings.zsh
+elif [[ -d /usr/share/doc/fzf/examples ]]; then
+  source /usr/share/doc/fzf/examples/completion.zsh
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+fi
