@@ -17,7 +17,6 @@ export CXXFLAGS=" -O3 -march=native "
 
 export LESSHISTFILE=-
 export LESS="-R -S -# 4"
-export LESSOPEN="|lesspipe.sh %s"
 
 export GOPATH=~/.go
 
