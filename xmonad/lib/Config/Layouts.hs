@@ -10,7 +10,7 @@ import XMonad.Layout.MagicFocus
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Spacing hiding (screenBorder, windowBorder)
-import XMonad.Layout.ZeroBorders
+import XMonad.Layout.VoidBorders
 import XMonad.Hooks.ManageDocks (avoidStruts)
 
 import qualified Config.Dimensions as D
@@ -31,19 +31,21 @@ hiddenQueueLayout
 
 ratioQueueLayout ns mr tr rr
   = avoidStruts
+  . normalBorders
   . spacingRaw False (borderAll 0) True windowBorder True
   . hidden
   $ HQLayout ns mr tr rr
 
 centeredLayout
   = avoidStruts
+  . normalBorders
   . magicFocus
   . hidden
   . centerMaster
   $ Grid
 
 fullLayout
-  = zeroBorders
+  = voidBorders
   . avoidStruts
   . spacingRaw False (borderAll 0) True windowBorder False
   $ Full
