@@ -24,7 +24,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true'
 
 export MOSH_ESCAPE_KEY='~'
-export LIBVA_DRIVER_NAME=i965
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
 
