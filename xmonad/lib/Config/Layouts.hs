@@ -9,7 +9,9 @@ import XMonad.Layout.HiddenQueueLayout
 import XMonad.Layout.MagicFocus
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
+import XMonad.Layout.Reflect
 import XMonad.Layout.Spacing hiding (screenBorder, windowBorder)
+import XMonad.Layout.ThreeColumns
 import XMonad.Layout.VoidBorders
 import XMonad.Hooks.ManageDocks (avoidStruts)
 
@@ -18,10 +20,17 @@ import qualified Config.Dimensions as D
 layoutHook
   = lessBorders OnlyScreenFloat
   . boringWindows
-  . onWorkspaces ["dev"] centeredLayout
+  . onWorkspaces ["dev"] (threeLayout ||| centeredLayout)
   . onWorkspaces ["doc"] docLayout
-  . onWorkspaces ["web", "gimp", "chat"] (fullLayout ||| hiddenQueueLayout)
-  $ hiddenQueueLayout ||| fullLayout
+  . onWorkspaces ["web", "gimp", "chat"] (fullLayout ||| threeLayout)
+  $ threeLayout ||| fullLayout
+
+threeLayout
+  = avoidStruts
+  . reflectHoriz
+  . hideNAt 2 3
+  . normalBorders
+  $ ThreeColMid 1 (3/100) (1/2)
 
 docLayout
   = ratioQueueLayout 1 (1 - D.terminalCRatio 84) D.topWindowRatio D.resizeRatio

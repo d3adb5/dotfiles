@@ -4,7 +4,7 @@ module Config.Dimensions where
 
 import Data.Ratio
 
-(screenWidth, screenHeight) = (1366, 768)
+(screenWidth, screenHeight) = (2560, 1080)
 (characterWidth, characterHeight) =  (6, 12)
 (horizontalPadding, verticalPadding) = (2, 2)
 
