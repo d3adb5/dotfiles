@@ -1,0 +1,12 @@
+#tablist .tab:hover > .tab-title-wrapper {
+  mask-image: linear-gradient(to left, transparent 0, black 2em);
+}
+
+.tab-close    { display: none; }
+#topmenu      { display: none; }
+#tablist      { scrollbar-width: none; }
+#tablist .tab { border: 0; }
+
+#pinnedtablist.compact {
+  border-bottom: solid 2px #656565 !important;
+}
