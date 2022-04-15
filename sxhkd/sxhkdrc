@@ -1,5 +1,5 @@
 mod4 + p
-	dmenu_run
+	fzfmenu_run
 
 XF86AudioLowerVolume
 	volume -d
