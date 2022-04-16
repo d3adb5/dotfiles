@@ -1,0 +1,23 @@
+#!/bin/sh
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=\@im=fcitx
+
+xsetroot -cursor_name left_ptr
+xsetroot -name xmonad
+hsetroot -solid "#1d1f21"
+
+xrdb -merge "$HOME/.Xresources"
+xmodmap "$HOME/.Xmodmap"
+
+xbanish -i mod4 &
+dunst -config "$HOME/.config/dunst/dunstrc" &
+sxhkd &
+picom -b
+fcitx -d
+
+udiskie &
+stalonetray &
+
+exec xmonad

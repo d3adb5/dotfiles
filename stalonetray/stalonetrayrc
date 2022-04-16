@@ -1,0 +1,23 @@
+icon_size    16
+geometry     1x1-180+1
+max_geometry 0x0
+
+background  "#1d1f21"
+transparent false
+tint_level  0
+decorations none
+fuzzy_edges 0
+no_shrink   false
+parent_bg   false
+
+grow_gravity SE
+icon_gravity NE
+
+skip_taskbar true
+sticky       true
+vertical     false
+
+window_layer normal
+window_strut auto
+window_type  dock
+xsync        false

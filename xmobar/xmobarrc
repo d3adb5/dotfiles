@@ -1,0 +1,35 @@
+Config
+    { font = "xft:DejaVu Sans Mono:size=9.1,IPAGothic:size=9.1,Baekmuk Dotum:size=9.1,Unifont:size=9.1"
+
+    , borderColor = "#656565"
+    , border = BottomB
+    , borderWidth = 2
+
+    , bgColor = "#1d1f21"
+    , fgColor = "#c5c8c6"
+    , position = Static {xpos = 0, ypos = 0, width = 2560, height = 20}
+
+    , commands =
+        [ Run DateZone "%A, %B %d日 ~ %H:%M" "ja_JP.UTF-8" "" "date" 10
+        , Run UnsafeStdinReader
+
+        , Run Cpu
+            [ "-t", "<total>%", "-c", "0", "-w", "2", "-M", "3"
+            ] 10
+        , Run Memory
+            [ "-t", "<usedratio>%", "-c", "0", "-w", "2", "-M", "3"
+            ] 10
+        ]
+
+    , sepChar = "%"
+    , alignSep = "}{"
+    , template = " \
+        \<icon=.local/share/icons/xpm/cpu.xpm/> %cpu% \
+        \<icon=.local/share/icons/xpm/mem.xpm/> %memory% \
+        \<icon=.local/share/icons/xpm/vbar.xpm/> \
+        \}%UnsafeStdinReader%{ \
+        \<action=`date-not`>\
+        \<icon=.local/share/icons/xpm/date.xpm/> %date% </action>"
+    }
+
+-- vim: set filetype=haskell syntax=haskell :
