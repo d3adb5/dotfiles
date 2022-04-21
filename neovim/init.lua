@@ -1,0 +1,5 @@
+require("settings")
+require("highlights")
+require("functions")
+require("mappings")
+require("autocommands")
