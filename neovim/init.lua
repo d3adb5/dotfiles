@@ -5,6 +5,10 @@ require("mappings")
 require("autocommands")
 
 require("packer").startup(function ()
+  use { "lewis6991/impatient.nvim",
+    config = function () require("impatient") end
+  }
+
   use "wbthomason/packer.nvim"
 
   -- {{{ essential plugins
