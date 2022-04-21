@@ -13,3 +13,7 @@ end
 function set_git_branch_var()
   vim.b.gitbranch = get_git_branch()
 end
+
+function in_a_git_repo()
+  return os.execute("git status >/dev/null 2>/dev/null") == 0
+end
