@@ -22,3 +22,9 @@ autocmd({ "BufWritePost" }, {
   command = "if &makeprg != 'make' | make | endif",
   group = "common"
 })
+
+autocmd({ "FileType markdown" }, {
+  desc = "Autoformat paragraphs when editing Markdown.",
+  callback = function () vim.bo.formatoptions = vim.bo.formatoptions .. "a" end,
+  group = "common"
+})

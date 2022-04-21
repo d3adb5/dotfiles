@@ -36,7 +36,7 @@ buffer.tabstop     = 2
 buffer.shiftwidth  = 2
 buffer.textwidth   = 80
 
-buffer.formatoptions = "tcroqanj"
+buffer.formatoptions = "tcroqnj"
 
 global.statusline = "%#PmenuSel# %{b:gitbranch} %#FileName# %<%f %m %="
   .. "%#PmenuSel# %y %6(L%l%) %-6(C%v%) %P "
