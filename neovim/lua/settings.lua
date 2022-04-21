@@ -22,6 +22,9 @@ global.diffopt    = "internal,filler,closeoff,foldcolumn:0"
 global.scrolloff     = 15
 global.sidescrolloff = 5
 
+global.completeopt = "menu,menuone,noinsert,noselect"
+global.shortmess   = "filnxtToOFc"
+
 window.list       = true
 window.number     = true
 window.cursorline = true
