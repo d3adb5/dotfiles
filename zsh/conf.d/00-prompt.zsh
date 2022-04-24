@@ -7,6 +7,10 @@ precmd() {
   vcs_info
 }
 
+reset-cursor() {
+  printf '\033[ q'
+}
+
 +vi-git-untracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == 'true' ]] && \
       git status --porcelain | grep -q -m 1 '??'; then
@@ -21,7 +25,7 @@ zstyle ':vcs_info:git:*' unstagedstr ' %F{9}•%f'
 zstyle ':vcs_info:git:*' formats '→ %F{14}%b%f%m%u%c'
 zstyle ':vcs_info:git:*' actionformats '→ %F{14}%b %F{13}%a%f'
 
-PROMPT='%F{11}%n %F{12}%M %F{10}%~%f ${vcs_info_msg_0_}
+PROMPT='%F{11}%n %F{12}%M %F{10}%~%f ${vcs_info_msg_0_}$(reset-cursor)
 %(!.#.») '
 
 PS2='  » '
