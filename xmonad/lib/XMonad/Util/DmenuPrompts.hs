@@ -13,8 +13,8 @@ import System.IO
 import System.Process (runInteractiveProcess)
 import Control.Monad (when)
 
-runProcessWithInput :: MonadIO m => FilePath -> [String] -> String -> m String
-runProcessWithInput cmd args input = io $ do
+getLastLineFromProcess :: MonadIO m => FilePath -> [String] -> String -> m String
+getLastLineFromProcess cmd args input = io $ do
   (pin, pout, perr, _) <- runInteractiveProcess cmd args Nothing Nothing
   hPutStr pin input
   hClose pin
@@ -22,11 +22,11 @@ runProcessWithInput cmd args input = io $ do
   when (output == output) $ return ()
   hClose pout
   hClose perr
-  return output
+  return $ last (lines output)
 
 menuArgs' :: String -> [String] -> [String] -> X String
 menuArgs' mcmd args opts = fmap (filter (/= '\n')) $
-  runProcessWithInput mcmd args (unlines opts)
+  getLastLineFromProcess mcmd args (unlines opts)
 
 dmenuArgs :: [String] -> [String] -> X String
 dmenuArgs = menuArgs' "dmenu"
