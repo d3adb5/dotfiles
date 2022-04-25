@@ -1,9 +1,13 @@
 module XMonad.Actions.DmenuWorkspaces
   ( selectWorkspace
+  , selectWorkspace'
   , moveToWorkspace
+  , moveToWorkspace'
   , renameWorkspace
+  , renameWorkspace'
   , removeWorkspace
   , chooseWorkspace
+  , chooseWorkspace'
   ) where
 
 import XMonad hiding (workspaces)
@@ -36,20 +40,32 @@ sendTo wn ws = do
 selectWorkspace :: X ()
 selectWorkspace = chooseWorkspace >>= goTo
 
+selectWorkspace' :: String -> [String] -> X ()
+selectWorkspace' cmd args = chooseWorkspace' cmd args >>= goTo
+
 -- | Creates a dmenu prompt with workspace names and returns the chosen name.
 chooseWorkspace :: X String
 chooseWorkspace = workspaceDmenu
+
+chooseWorkspace' :: String -> [String] -> X String
+chooseWorkspace' = workspaceMenuArgs
 
 -- | Prompts the user through dmenu and moves the given window to the chosen
 -- workspace.
 moveToWorkspace :: Window -> X ()
 moveToWorkspace = (chooseWorkspace >>=) . sendTo
 
+moveToWorkspace' :: String -> [String] -> Window -> X ()
+moveToWorkspace' cmd args w = chooseWorkspace' cmd args >>= sendTo w
+
 -- | Renames the current workspace by prompting the user through dmenu for a new
 -- workspace tag. No entries are given, as renaming should not be picked from a
 -- list of already used tags.
 renameWorkspace :: X ()
 renameWorkspace = dmenuArgs [] [] >>= renameWorkspaceByName
+
+renameWorkspace' :: String -> [String] -> X ()
+renameWorkspace' cmd args = menuArgs' cmd args [] >>= renameWorkspaceByName
 
 -- | Manually updates the current workspace tag in the WindowSet with a given
 -- string.

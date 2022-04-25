@@ -24,8 +24,8 @@ keyBindings =
   , ("M-k", focusUp)
   , ("M-<R>", moveTo Next (WSIs . return $ (/= "NSP") . W.tag))
   , ("M-<L>", moveTo Prev (WSIs . return $ (/= "NSP") . W.tag))
-  , ("M-y", selectWorkspace)
-  , ("M-u", renameWorkspace)
+  , ("M-y", selectWorkspace' "fzfmenu" fzfmenuArgs)
+  , ("M-u", renameWorkspace' "fzfmenu" fzfmenuArgs)
   , ("M-i", removeWorkspace)
   , ("M-M1-h", withFocused hideWindow)
   , ("M-M1-j", withFocused swapWithNextHidden)
@@ -35,7 +35,7 @@ keyBindings =
   , ("M-s v", namedScratchpadAction MH.scratchpads "volume")
   , ("M-C-y", chooseWorkspace >>= windows . copy)
   , ("M-<Backspace>", kill1)
-  , ("M-S-y", withFocused moveToWorkspace)
+  , ("M-S-y", withFocused $ moveToWorkspace' "fzfmenu" fzfmenuArgs)
   , ("M-M1-c", withFocused $ keysMoveWindowTo (681,392) (1/2,1/2))
   ] ++ [ ("M-" ++ show n, withNthWorkspace' notNSP W.greedyView (n - 1))
          | n <- [1..9] ]
@@ -56,3 +56,5 @@ mouseBindings = [((mod4Mask, button3), (\w -> focus w >> mouseResizeWindow w))]
 
 notNSP :: [WorkspaceId] -> [WorkspaceId]
 notNSP = filter (/= "NSP")
+
+fzfmenuArgs = [ "--print-query", "--reverse", "+m" ]
