@@ -24,8 +24,8 @@ autocmd({ "BufWritePost" }, {
 })
 
 autocmd({ "FileType" }, {
-  desc = "Autoformat paragraphs when editing Markdown.",
+  desc = "Autoformat paragraphs when editing Markdown or commit messages.",
   command = "set formatoptions+=a",
-  pattern = "markdown",
+  pattern = "markdown,gitcommit",
   group = "common"
 })
