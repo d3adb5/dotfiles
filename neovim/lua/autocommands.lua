@@ -23,8 +23,9 @@ autocmd({ "BufWritePost" }, {
   group = "common"
 })
 
-autocmd({ "FileType markdown" }, {
+autocmd({ "FileType" }, {
   desc = "Autoformat paragraphs when editing Markdown.",
-  callback = function () vim.bo.formatoptions = vim.bo.formatoptions .. "a" end,
+  command = "set formatoptions+=a",
+  pattern = "markdown",
   group = "common"
 })
