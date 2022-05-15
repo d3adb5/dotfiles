@@ -19,8 +19,8 @@ jobs:
           enable-stack: true
           stack-version: latest
 
-      - name: Install required header files
-        run: sudo apt-get install -y libxrandr-dev
+      - name: Install XMonad C build dependencies
+        run: sudo apt-get install -y libx11-dev libxft-dev libxinerama-dev libxrandr-dev libxss-dev
 
       - name: Build custom XMonad config
         run: cd xmonad && stack build
