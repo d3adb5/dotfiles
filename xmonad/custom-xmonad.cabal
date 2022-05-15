@@ -29,6 +29,7 @@ executable xmonad
                , XMonad.Actions.Hidden
                , XMonad.Layout.Hidden
                , XMonad.Layout.HiddenQueueLayout
+               , XMonad.Layout.VoidBorders
                , XMonad.Util.CenterRationalRect
                , XMonad.Util.DmenuPrompts
                , XMonad.Util.Hidden
