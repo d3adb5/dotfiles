@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  pull_request: {}
+  push:
+    branches: [ master ]
+
+jobs:
+  xmonad:
+    name: XMonad
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout files in the repository
+        uses: actions/checkout@v3
+
+      - name: Setup Haskell & Stack
+        uses: haskell/actions/setup@v2
+        with:
+          enable-stack: true
+          stack-version: latest
+
+      - name: Install XMonad C build dependencies
+        run: sudo apt-get install -y libx11-dev libxft-dev libxinerama-dev libxrandr-dev libxss-dev
+
+      - name: Build custom XMonad config
+        run: cd xmonad && stack build

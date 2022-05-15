@@ -1,0 +1,38 @@
+name:       custom-xmonad
+version:    0.1.0
+license:    WTFPL
+author:     d3adb5
+maintainer: me@d3adb5.net
+
+build-type:    Simple
+cabal-version: >=1.10
+
+executable xmonad
+  main-is: ../xmonad.hs
+  hs-source-dirs: lib
+
+  build-depends: base
+               , containers
+               , data-default
+               , process
+               , xmonad >= 0.17
+               , xmonad-contrib >= 0.17
+
+  other-modules: Config.Bindings
+               , Config.Dimensions
+               , Config.HandleEventHook
+               , Config.Layouts
+               , Config.LogHook
+               , Config.ManageHook
+               , Config.StartupHook
+               , XMonad.Actions.DmenuWorkspaces
+               , XMonad.Actions.Hidden
+               , XMonad.Layout.Hidden
+               , XMonad.Layout.HiddenQueueLayout
+               , XMonad.Layout.VoidBorders
+               , XMonad.Util.CenterRationalRect
+               , XMonad.Util.DmenuPrompts
+               , XMonad.Util.Hidden
+
+  default-language: Haskell2010
+  ghc-options: -Wall -threaded -j
