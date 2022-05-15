@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  pull_request: {}
+  push:
+    branches: [ master ]
+
+jobs:
+  xmonad:
+    name: XMonad
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout files in the repository
+        uses: actions/checkout@v3
+
+      - name: Setup Haskell & Stack
+        uses: haskell/actions/setup@v2
+        with:
+          enable-stack: true
+          stack-version: latest
+
+      - name: Build custom XMonad config
+        run: cd xmonad && stack build
