@@ -25,6 +25,9 @@ global.sidescrolloff = 5
 global.completeopt = "menu,menuone,noinsert,noselect"
 global.shortmess   = "filnxtToOFc"
 
+global.foldlevelstart = 3
+window.foldlevel = 3
+
 window.list       = true
 window.number     = true
 window.cursorline = true
