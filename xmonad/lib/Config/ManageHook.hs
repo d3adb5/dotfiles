@@ -47,8 +47,8 @@ scratchpads =
     (className =? "Pavucontrol")
     (customFloating $ centerIRectOffsetY panelHeight vw vh sw sh)
   ]
-  where tw = 100 * characterWidth + 2 * (borderWidth + terminalPadding)
-        th =  27 * characterHeight + 2 * (borderWidth + terminalPadding)
+  where tw = 150 * characterWidth + 2 * (borderWidth + terminalPadding)
+        th =  40 * characterHeight + 2 * (borderWidth + terminalPadding)
         (sw,sh) = (screenWidth, screenHeight)
         (vw,vh) = (768,648)
 
