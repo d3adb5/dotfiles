@@ -45,11 +45,12 @@ require("packer").startup(function ()
   }
   -- }}}
   -- {{{ additional highlighting and convenience
-  use { "lilydjwg/colorizer",      ft = {"markdown", "html", "scss", "css"} }
-  use { "plasticboy/vim-markdown", ft = "markdown" }
-  use { "dkarter/bullets.vim",     ft = "markdown" }
-  use { "junegunn/goyo.vim",       ft = "markdown" }
-  use { "keith/tmux.vim",          event = "VimEnter .tmux.conf" }
+  use { "lilydjwg/colorizer",     ft = {"markdown", "html", "scss", "css"} }
+  use { "preservim/vim-markdown", ft = "markdown" }
+  use { "dkarter/bullets.vim",    ft = "markdown" }
+  use { "junegunn/goyo.vim",      ft = "markdown" }
+  use { "hashivim/vim-terraform", ft = "terraform" }
+  use { "keith/tmux.vim",         event = "VimEnter .tmux.conf" }
 
   use { "martinda/Jenkinsfile-vim-syntax", event = "VimEnter Jenkinsfile" }
 
