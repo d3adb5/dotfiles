@@ -51,6 +51,7 @@ require("packer").startup(function ()
   use { "junegunn/goyo.vim",      ft = "markdown" }
   use { "hashivim/vim-terraform", ft = "terraform" }
   use { "keith/tmux.vim",         event = "VimEnter .tmux.conf" }
+  use { "andrewstuart/vim-kubernetes" }
 
   use { "martinda/Jenkinsfile-vim-syntax", event = "VimEnter Jenkinsfile" }
 
