@@ -15,3 +15,5 @@ cmp.setup({
 lsp.groovyls.setup({ capabilities = cap })
 lsp.pyright.setup({ capabilities = cap })
 lsp.terraformls.setup({ capabilities = cap })
+lsp.hls.setup({ capabilities = cap })
+lsp.sumneko_lua.setup({ capabilities = cap })
