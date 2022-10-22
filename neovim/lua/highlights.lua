@@ -4,6 +4,7 @@ end
 
 hl("CursorLine",   { ctermbg =  0 })
 hl("CursorLineNr", { ctermfg = 11, ctermbg = 0})
+hl("NormalFloat",  {})
 hl("Pmenu",        { ctermfg =  7, ctermbg = 0 })
 hl("PmenuSel",     { ctermfg = 15, ctermbg = 8 })
 hl("Todo",         { ctermfg = 15, ctermbg = 7 })

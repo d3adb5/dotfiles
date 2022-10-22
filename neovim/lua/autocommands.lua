@@ -29,3 +29,10 @@ autocmd({ "FileType" }, {
   pattern = "markdown,gitcommit",
   group = "common"
 })
+
+autocmd({ "FileType" }, {
+  desc = "Set expandtab and tab width when editing Haskell code.",
+  command = "set et ts=2 sw=2",
+  pattern = "haskell",
+  group = "common"
+})
