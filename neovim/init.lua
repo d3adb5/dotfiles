@@ -105,6 +105,12 @@ require("packer").startup(function ()
   -- {{{ completion, linting, language servers
   use "mfussenegger/nvim-lint"
 
+  use { "github/copilot.vim",
+    config = function ()
+      vim.g.copilot_filetypes = { markdown = true }
+    end
+  }
+
   use { "hrsh7th/nvim-cmp",
     after = "nvim-lspconfig",
     requires = {
