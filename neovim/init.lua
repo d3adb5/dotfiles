@@ -46,7 +46,7 @@ require("packer").startup(function ()
   -- }}}
   -- {{{ additional highlighting and convenience
   use { "lilydjwg/colorizer",     ft = {"markdown", "html", "scss", "css"} }
-  use { "preservim/vim-markdown", ft = "markdown" }
+  use { "tpope/vim-markdown",     ft = "markdown" }
   use { "dkarter/bullets.vim",    ft = "markdown" }
   use { "junegunn/goyo.vim",      ft = "markdown" }
   use { "hashivim/vim-terraform", ft = "terraform" }
