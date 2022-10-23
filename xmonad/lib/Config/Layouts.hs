@@ -17,8 +17,14 @@ import qualified Config.Dimensions as D
 layoutHook
   = lessBorders OnlyScreenFloat
   . boringWindows
+  . onWorkspaces ["chat"] (gridLayout ||| fullLayout)
   . onWorkspaces ["gimp"] (fullLayout ||| threeLayout)
   $ threeLayout ||| fullLayout
+
+gridLayout
+  = avoidStruts
+  . normalBorders
+  $ Grid
 
 threeLayout
   = avoidStruts
