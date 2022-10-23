@@ -35,4 +35,4 @@ executable xmonad
                , XMonad.Util.Hidden
 
   default-language: Haskell2010
-  ghc-options: -Wall -threaded -j
+  ghc-options: -Wall -threaded -j -O2
