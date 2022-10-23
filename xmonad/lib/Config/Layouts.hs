@@ -17,7 +17,7 @@ import qualified Config.Dimensions as D
 layoutHook
   = lessBorders OnlyScreenFloat
   . boringWindows
-  . onWorkspaces ["web", "gimp", "chat"] (fullLayout ||| threeLayout)
+  . onWorkspaces ["gimp"] (fullLayout ||| threeLayout)
   $ threeLayout ||| fullLayout
 
 threeLayout
