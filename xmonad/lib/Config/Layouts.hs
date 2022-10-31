@@ -7,9 +7,11 @@ import XMonad.Layout.Hidden
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Reflect
+import XMonad.Layout.SimpleFloat (SimpleFloat(..))
 import XMonad.Layout.Spacing hiding (windowBorder)
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.VoidBorders
+import XMonad.Layout.WindowArranger (windowArrangeAll)
 import XMonad.Hooks.ManageDocks (avoidStruts)
 
 import qualified Config.Dimensions as D
@@ -19,7 +21,14 @@ layoutHook
   . boringWindows
   . onWorkspaces ["chat"] (gridLayout ||| fullLayout)
   . onWorkspaces ["gimp"] (fullLayout ||| threeLayout)
+  . onWorkspaces ["float"] (floatLayout ||| gridLayout)
   $ threeLayout ||| fullLayout
+
+floatLayout
+  = avoidStruts
+  . normalBorders
+  . windowArrangeAll
+  $ SF 0
 
 gridLayout
   = avoidStruts
