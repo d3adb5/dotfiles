@@ -81,7 +81,7 @@
 }
 
 :root:not([customizing]) #navigator-toolbox {
-  margin-top: -39px;
+  margin-top: -41px;
   transition: 100ms;
 }
 
