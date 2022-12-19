@@ -28,6 +28,8 @@ Config
         \<icon=.local/share/icons/xpm/mem.xpm/> %memory% \
         \<icon=.local/share/icons/xpm/vbar.xpm/> \
         \}%UnsafeStdinReader%{ \
+        \<action=`switch-sony-hfp`>\
+        \<icon=.local/share/icons/xpm/headphones.xpm/> </action>\
         \<action=`date-not`>\
         \<icon=.local/share/icons/xpm/date.xpm/> %date% </action>"
     }
