@@ -107,7 +107,7 @@ require("packer").startup(function ()
 
   use { "github/copilot.vim",
     config = function ()
-      vim.g.copilot_filetypes = { markdown = true }
+      vim.g.copilot_filetypes = { markdown = true, yaml = true, gitcommit = true }
     end
   }
 
