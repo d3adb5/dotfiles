@@ -6,6 +6,8 @@ module XMonad.Actions.DmenuWorkspaces
   , renameWorkspace
   , renameWorkspace'
   , removeWorkspace
+  , removeWorkspaceIfEmpty
+  , removeWorkspaceWhen
   , chooseWorkspace
   , chooseWorkspace'
   ) where
@@ -16,6 +18,7 @@ import qualified XMonad.Actions.DynamicWorkspaces as DW
 import XMonad.Util.DmenuPrompts
 import XMonad.Actions.DynamicWorkspaceOrder (getSortByOrder, updateName, removeName)
 
+import Control.Monad (when)
 import Data.Maybe
 
 -- | Switches to a workspace given its tag. Will create it if it doesn't exist.
@@ -101,8 +104,15 @@ removeWorkspace' wsp wset = rmWkspc xs ys
       }
     rmWkspc _ _ = wset
 
+removeWorkspaceWhen :: (WindowSpace -> Bool) -> X ()
+removeWorkspaceWhen pred = do
+  ws <- gets $ workspace . current . windowset
+  when (pred ws) $ do
+    DW.removeWorkspace
+    removeName $ tag ws
+
+removeWorkspaceIfEmpty :: X ()
+removeWorkspaceIfEmpty = removeWorkspaceWhen (null . integrate' . stack)
+
 removeWorkspace :: X ()
-removeWorkspace = do
-  tag <- gets (currentTag . windowset)
-  DW.removeWorkspace
-  removeName tag
+removeWorkspace = removeWorkspaceWhen (const True)
