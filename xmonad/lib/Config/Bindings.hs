@@ -26,7 +26,7 @@ keyBindings =
   , ("M-<L>", moveTo Prev (WSIs . return $ (/= "NSP") . W.tag))
   , ("M-y", selectWorkspace' "fzfmenu" fzfmenuArgs)
   , ("M-u", renameWorkspace' "fzfmenu" fzfmenuArgs)
-  , ("M-i", removeWorkspace)
+  , ("M-i", removeWorkspaceIfEmpty)
   , ("M-M1-h", withFocused hideWindow)
   , ("M-M1-j", withFocused swapWithNextHidden)
   , ("M-M1-k", withFocused swapWithLastHidden)
