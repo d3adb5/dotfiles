@@ -53,4 +53,5 @@ removeWhenEmpty wss = withWorkspace $ \ws ->
   when (isNothing (W.stack ws) && (W.tag ws) `elem` wss) $
     DW.removeWorkspaceByTag $ W.tag ws
 
+withWorkspace :: (WindowSpace -> X a) -> X a
 withWorkspace = (gets (W.workspace . W.current . windowset) >>=)

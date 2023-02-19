@@ -26,6 +26,7 @@ data HideNAt a = HideNAt Int Int deriving (Read, Show)
 hidden :: l Window -> ModifiedLayout HiddenL l Window
 hidden = ModifiedLayout HiddenL
 
+hideNAt :: Int -> Int -> l Window -> ModifiedLayout HiddenL (ModifiedLayout HideNAt l) Window
 hideNAt n at = hidden . ModifiedLayout (HideNAt n at)
 
 instance LayoutModifier HiddenL Window where

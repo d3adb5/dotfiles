@@ -55,4 +55,5 @@ mouseBindings = [((mod4Mask, button3), (\w -> focus w >> mouseResizeWindow w))]
 notNSP :: [WorkspaceId] -> [WorkspaceId]
 notNSP = filter (/= "NSP")
 
+fzfmenuArgs :: [String]
 fzfmenuArgs = [ "--print-query", "--reverse", "+m" ]

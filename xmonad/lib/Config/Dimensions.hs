@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-missing-signatures -Wno-type-defaults #-}
 {-# LANGUAGE NoMonomorphismRestriction #-}
 
 module Config.Dimensions where

@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-type-defaults #-}
 module Config.ManageHook (manageHook, scratchpads) where
 
 import XMonad hiding (manageHook, borderWidth)

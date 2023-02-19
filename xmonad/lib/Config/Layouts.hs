@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-missing-signatures #-}
 module Config.Layouts (layoutHook) where
 
 import XMonad (Full(..), (|||))
