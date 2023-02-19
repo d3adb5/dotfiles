@@ -2,6 +2,7 @@ require("functions")
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
+local lint = require("lint")
 
 augroup("common", {})
 
@@ -14,6 +15,12 @@ autocmd({ "VimLeave" }, {
 autocmd({ "BufEnter", "BufWritePost" }, {
   desc = "Obtain the Git branch the file belongs to, if any.",
   callback = set_git_branch_var,
+  group = "common"
+})
+
+autocmd({ "TextChangedI", "TextChanged" }, {
+  desc = "Attempt linting when changes were made to the text.",
+  callback = function () lint.try_lint() end,
   group = "common"
 })
 
