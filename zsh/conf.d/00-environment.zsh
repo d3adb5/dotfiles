@@ -29,6 +29,9 @@ export MOSH_ESCAPE_KEY='~'
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
 
+# Makes sure '/' is not considered part of words for backward-kill-word.
+export WORDCHARS="${WORDCHARS/\/}"
+
 path+=(
 	"$HOME/.local/bin"
 	"$HOME/.cabal/bin"
