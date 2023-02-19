@@ -27,8 +27,7 @@ barPP = def
   }
   where
     hiddenNum = withHidden $ return . catchZero . length
-    catchZero = \l -> if l == 0 then Nothing else Just $ replicate l '―'
-    toIcon = wrap "<icon=.local/share/icons/xpm/" ".xpm/>"
+    catchZero l = if l == 0 then Nothing else Just $ replicate l '―'
 
 logHook :: X ()
 logHook = do
@@ -40,17 +39,17 @@ logHook = do
   dynamicLogWithPP $
     barPP { ppOutput = hPutStrLn xmobarHandle . centerField . words }
   where
-    centerField [a] = a
-    centerField [a,b] = printf "%s %s %s" b a b
+    centerField [] = error "centerField: empty list"
+    centerField (x:xs) = printf "%s %s %s" (concat xs) x (concat xs)
 
 avoidWorkspaces :: [WorkspaceId] -> X ()
 avoidWorkspaces wss = withWorkspace $ \ws ->
-  when ((W.tag ws) `elem` wss) $
+  when (W.tag ws `elem` wss) $
     DO.withNthWorkspace' (filter (`notElem` wss)) W.greedyView 0
 
 removeWhenEmpty :: [WorkspaceId] -> X ()
 removeWhenEmpty wss = withWorkspace $ \ws ->
-  when (isNothing (W.stack ws) && (W.tag ws) `elem` wss) $
+  when (isNothing (W.stack ws) && W.tag ws `elem` wss) $
     DW.removeWorkspaceByTag $ W.tag ws
 
 withWorkspace :: (WindowSpace -> X a) -> X a
