@@ -15,8 +15,6 @@ import XMonad.Util.NamedScratchpad
 import qualified Config.ManageHook as MH
 import qualified XMonad.StackSet as W
 
-import Data.Default
-
 keyBindings :: [(String, X ())]
 keyBindings =
   [ ("M-]", spawn =<< fmap (terminal . config) ask)

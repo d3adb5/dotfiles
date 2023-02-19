@@ -15,7 +15,6 @@ import XMonad.StackSet hiding (visible, delete)
 import XMonad.Util.Hidden
 
 import qualified XMonad.StackSet as W
-import qualified XMonad.Util.ExtensibleState as XS
 
 import Control.Monad (ap, msum, when)
 import Data.Sequence (Seq(..), (<|))

@@ -4,7 +4,7 @@ import XMonad hiding (logHook)
 import XMonad.Actions.Hidden (unhideOnFocus)
 import XMonad.Actions.UpdatePointer
 import XMonad.Hooks.DynamicLog
-import XMonad.Util.Hidden (withHidden, getHidden)
+import XMonad.Util.Hidden (withHidden)
 import XMonad.Util.SpawnNamedPipe
 
 import qualified XMonad.StackSet as W

@@ -16,7 +16,7 @@ import XMonad hiding (workspaces)
 import XMonad.StackSet hiding (filter)
 import qualified XMonad.Actions.DynamicWorkspaces as DW
 import XMonad.Util.DmenuPrompts
-import XMonad.Actions.DynamicWorkspaceOrder (getSortByOrder, updateName, removeName)
+import XMonad.Actions.DynamicWorkspaceOrder (updateName, removeName)
 
 import Control.Monad (when)
 import Data.Maybe

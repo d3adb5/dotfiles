@@ -18,7 +18,6 @@ import qualified XMonad.Layout.BoringWindows as BW
 
 import Control.Monad (when)
 import Data.Foldable (toList)
-import Data.List (splitAt)
 import Data.Sequence ((<|))
 
 data HiddenL a = HiddenL         deriving (Read, Show)
