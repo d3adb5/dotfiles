@@ -18,7 +18,7 @@ module XMonad.Util.Hidden
   , withHidden
   ) where
 
-import XMonad
+import XMonad hiding (display, state)
 import qualified XMonad.StackSet as W
 import qualified XMonad.Util.ExtensibleState as XS
 import XMonad.Util.WindowProperties (getProp32)

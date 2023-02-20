@@ -11,7 +11,7 @@ module XMonad.Layout.HiddenQueueLayout
 
 import XMonad hiding (tile, focus)
 import XMonad.Actions.Hidden
-import XMonad.StackSet hiding (visible, delete)
+import XMonad.StackSet hiding (visible, delete, stack, hidden)
 import XMonad.Util.Hidden
 
 import qualified XMonad.StackSet as W

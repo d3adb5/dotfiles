@@ -39,9 +39,9 @@ instance LayoutModifier HiddenL Window where
 
   handleMess HiddenL m
     | Just BW.UpdateBoring <- fromMessage m = do
-        hidden <- XS.gets hiddenWindows
+        hiddenW <- XS.gets hiddenWindows
         ws <- XMonad.gets (W.workspace . W.current . windowset)
-        flip sendMessageWithNoRefresh ws $ BW.Replace "Hidden" (toList hidden)
+        flip sendMessageWithNoRefresh ws $ BW.Replace "Hidden" (toList hiddenW)
         return Nothing
     | otherwise = return Nothing
 
@@ -50,15 +50,15 @@ instance LayoutModifier HideNAt Window where
 
   modifyLayout (HideNAt n at) wksp rect = do
     let visibleWindows = W.integrate' (W.stack wksp)
-    hiddenWindows <- getHidden
+    hiddenW <- getHidden
 
     let willHideWindow = length visibleWindows > at
-        willUnhideWindow = length hiddenWindows > 1 && length visibleWindows < at
+        willUnhideWindow = length hiddenW > 1 && length visibleWindows < at
         stackToBeTiled | willHideWindow = deleteNthElem n (W.stack wksp)
-                       | willUnhideWindow = prepend (rightmost hiddenWindows) (W.stack wksp)
+                       | willUnhideWindow = prepend (rightmost hiddenW) (W.stack wksp)
                        | otherwise = W.stack wksp
 
-    when willUnhideWindow $ unhideWindowAndAct (rightmost hiddenWindows) (pure ())
+    when willUnhideWindow $ unhideWindowAndAct (rightmost hiddenW) (pure ())
     when willHideWindow $ hideWindowAndAct (<|) (visibleWindows !! (n - 1)) (pure ())
     runLayout (wksp { W.stack = stackToBeTiled }) rect
 

@@ -5,7 +5,7 @@ import XMonad hiding (manageHook, borderWidth)
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageHelpers
 import XMonad.Util.CenterRationalRect
-import XMonad.Util.NamedScratchpad
+import XMonad.Util.NamedScratchpad hiding (hook)
 import XMonad.Util.WindowProperties (getProp32s)
 import XMonad.StackSet (floating)
 
