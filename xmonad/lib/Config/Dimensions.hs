@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-missing-signatures -Wno-type-defaults #-}
 {-# LANGUAGE NoMonomorphismRestriction #-}
 
 module Config.Dimensions where
@@ -31,8 +32,8 @@ terminalCRatio columns = horizontalSpan % availableHorizontalSpan
 -- | Calculates the vertical ratio of a terminal window given the number of
 -- lines it should have.
 terminalLRatio :: Integral a => a -> Ratio a
-terminalLRatio lines = verticalSpan % availableVerticalSpan
-  where verticalSpan = lines * characterHeight + 2 * commonGap
+terminalLRatio lnum = verticalSpan % availableVerticalSpan
+  where verticalSpan = lnum * characterHeight + 2 * commonGap
 
 -- | Calculates the horizontal ratio of a window given its width in pixels.
 horizontalRatio :: Integral a => a -> Ratio a

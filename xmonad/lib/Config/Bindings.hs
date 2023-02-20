@@ -15,8 +15,6 @@ import XMonad.Util.NamedScratchpad
 import qualified Config.ManageHook as MH
 import qualified XMonad.StackSet as W
 
-import Data.Default
-
 keyBindings :: [(String, X ())]
 keyBindings =
   [ ("M-]", spawn =<< fmap (terminal . config) ask)
@@ -57,4 +55,5 @@ mouseBindings = [((mod4Mask, button3), (\w -> focus w >> mouseResizeWindow w))]
 notNSP :: [WorkspaceId] -> [WorkspaceId]
 notNSP = filter (/= "NSP")
 
+fzfmenuArgs :: [String]
 fzfmenuArgs = [ "--print-query", "--reverse", "+m" ]

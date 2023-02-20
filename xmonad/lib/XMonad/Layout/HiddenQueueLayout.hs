@@ -11,11 +11,10 @@ module XMonad.Layout.HiddenQueueLayout
 
 import XMonad hiding (tile, focus)
 import XMonad.Actions.Hidden
-import XMonad.StackSet hiding (visible, delete)
+import XMonad.StackSet hiding (visible, delete, stack, hidden)
 import XMonad.Util.Hidden
 
 import qualified XMonad.StackSet as W
-import qualified XMonad.Util.ExtensibleState as XS
 
 import Control.Monad (ap, msum, when)
 import Data.Sequence (Seq(..), (<|))
@@ -29,9 +28,8 @@ data HiddenQueueLayout a = HQLayout
   } deriving (Show, Read)
 
 instance LayoutClass HiddenQueueLayout Window where
-  doLayout l@(HQLayout swn mr sr _) rect stack = do
+  doLayout (HQLayout swn mr sr _) rect stack = do
     hidden <- getHidden
-    fcswin <- gets (W.peek . windowset)
     let viswin = visible stack hidden
         shouldHide = length viswin > swn + 1
         shouldUnhide = hidden /= S.empty && length viswin < swn + 1
@@ -45,7 +43,7 @@ instance LayoutClass HiddenQueueLayout Window where
       unhideWindowAndAct toUnhide (pure ())
     return . (, Nothing) . ap zip (tile swn mr sr rect . length) $ tiled'
 
-  handleMessage lyt@(HQLayout swnum mratio stratio rratio) msg =
+  handleMessage lyt@(HQLayout swnum mratio _ rratio) msg =
     return $ msum
       [ fmap resize (fromMessage msg)
       , fmap incsid (fromMessage msg)
@@ -64,7 +62,7 @@ tile 1 m _ r n = drop (2 - n) [r1,r2] where (r1,r2) = splitHorizontallyBy m r
 tile 2 m t r n = drop (3 - n) [r1,r2,r3]
   where (r1,rs) = splitHorizontallyBy m r
         (r2,r3) = splitVerticallyBy t rs
-tile n m _ r w = drop (length (r1:rss) - w) (r1:rss)
+tile _ m _ r w = drop (length (r1:rss) - w) (r1:rss)
   where (r1,rs) = splitHorizontallyBy m r
         rss = splitVertically (w - 1) rs
 
@@ -75,5 +73,5 @@ visible s h = integrate' $ W.filter (`notElem` h) s
 -- | Deletes an element of a list given its index.
 delete :: Int -> [a] -> [a]
 delete _ [] = []
-delete 0 (x:xs) = xs
+delete 0 (_:xs) = xs
 delete i (x:xs) = x : delete (i - 1) xs

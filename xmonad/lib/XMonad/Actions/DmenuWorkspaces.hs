@@ -16,9 +16,10 @@ import XMonad hiding (workspaces)
 import XMonad.StackSet hiding (filter)
 import qualified XMonad.Actions.DynamicWorkspaces as DW
 import XMonad.Util.DmenuPrompts
-import XMonad.Actions.DynamicWorkspaceOrder (getSortByOrder, updateName, removeName)
+import XMonad.Actions.DynamicWorkspaceOrder (updateName, removeName)
 
 import Control.Monad (when)
+import Data.List (find)
 import Data.Maybe
 
 -- | Switches to a workspace given its tag. Will create it if it doesn't exist.
@@ -65,49 +66,49 @@ moveToWorkspace' cmd args w = chooseWorkspace' cmd args >>= sendTo w
 -- workspace tag. No entries are given, as renaming should not be picked from a
 -- list of already used tags.
 renameWorkspace :: X ()
-renameWorkspace = dmenuArgs [] [] >>= renameWorkspaceByName
+renameWorkspace = dmenuArgs [] [] >>= renameCurrentWorkspace
 
 renameWorkspace' :: String -> [String] -> X ()
-renameWorkspace' cmd args = menuArgs' cmd args [] >>= renameWorkspaceByName
+renameWorkspace' cmd args = menuArgs' cmd args [] >>= renameCurrentWorkspace
 
 -- | Manually updates the current workspace tag in the WindowSet with a given
 -- string.
 setCurrentTag :: WorkspaceId -> WindowSet -> WindowSet
-setCurrentTag tag =
-  let setTag wk = wk { tag = tag }
+setCurrentTag newTag =
+  let setTag wk = wk { tag = newTag }
       setWsp sc = sc { workspace = setTag (workspace sc) }
       setScr ws = ws { current = setWsp (current ws) }
   in setScr
 
-renameWorkspaceByName :: WorkspaceId -> X ()
-renameWorkspaceByName "" = return ()
-renameWorkspaceByName ws = do
+-- | Sets the current workspace's tag to the given string. If another workspace
+-- already exists with the desired name, that workspace will be removed and its
+-- windows will be brought to the current workspace's stack.
+renameCurrentWorkspace :: WorkspaceId -> X ()
+renameCurrentWorkspace "" = return ()
+renameCurrentWorkspace ws = do
   gets (currentTag . windowset) >>= flip updateName ws
-  windows $ setCurrentTag ws . removeWorkspace' ws
+  windows $ setCurrentTag ws . removeWorkspaceWithoutRefresh ws
 
-removeWorkspace' :: WorkspaceId -> WindowSet -> WindowSet
-removeWorkspace' wsp wset = rmWkspc xs ys
-  where
-    (xs, ys) = break ((== wsp) . tag) (hidden wset)
+removeWorkspaceWithoutRefresh :: WorkspaceId -> WindowSet -> WindowSet
+removeWorkspaceWithoutRefresh name wset = newWindowSet
+  where foundWorkspace = find ((== name) . tag) $ hidden wset
+        currentScreen = current wset
+        currentWorkspace = workspace currentScreen
+        meld (Just x) (Just y) = differentiate $ integrate x ++ integrate y
+        meld a b | isNothing a = b
+                 | otherwise = a
 
-    meld (Just x) (Just y) = differentiate $ integrate x ++ integrate y
-    meld a b | isNothing a = b
-             | otherwise = a
+        newStack | isNothing foundWorkspace = stack currentWorkspace
+                 | otherwise = meld (stack $ fromJust foundWorkspace) (stack currentWorkspace)
 
-    rmWkspc xs (y:ys) = wset
-      { current = (current wset)
-        { workspace = (workspace $ current wset)
-          { stack = meld (stack y) (stack . workspace $ current wset)
-          }
-        }
-      , hidden = xs ++ ys
-      }
-    rmWkspc _ _ = wset
+        newWindowSet =
+          wset { hidden = filter ((/= name) . tag) $ hidden wset
+               , current = currentScreen { workspace = currentWorkspace { stack = newStack } } }
 
 removeWorkspaceWhen :: (WindowSpace -> Bool) -> X ()
-removeWorkspaceWhen pred = do
+removeWorkspaceWhen predicate = do
   ws <- gets $ workspace . current . windowset
-  when (pred ws) $ do
+  when (predicate ws) $ do
     DW.removeWorkspace
     removeName $ tag ws
 

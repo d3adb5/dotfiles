@@ -18,12 +18,11 @@ module XMonad.Util.Hidden
   , withHidden
   ) where
 
-import XMonad
+import XMonad hiding (display, state)
 import qualified XMonad.StackSet as W
 import qualified XMonad.Util.ExtensibleState as XS
 import XMonad.Util.WindowProperties (getProp32)
 
-import qualified Data.Map as M
 import Data.Maybe (fromMaybe)
 import qualified Data.List as L
 import qualified Data.Sequence as S

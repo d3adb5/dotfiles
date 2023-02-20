@@ -61,10 +61,10 @@ swapWithNextHidden :: Window -> X ()
 swapWithNextHidden w = withNextHidden $ flip (swapWithHidden w) (flip (S.|>))
 
 withLastHidden :: (Window -> X a) -> X a
-withLastHidden = withHidden . (\f -> f . rightmost)
+withLastHidden = withHidden . (. rightmost)
 
 withNextHidden :: (Window -> X a) -> X a
-withNextHidden = withHidden . (\f -> f . leftmost)
+withNextHidden = withHidden . (. leftmost)
 
 unhideOnFocus :: X ()
 unhideOnFocus = withFocused $ \fwin ->
@@ -74,10 +74,10 @@ unhideOnFocus = withFocused $ \fwin ->
 -- these shall fail if the sequence is empty, but we expect that never to happen
 leftmost  :: (Eq a) => S.Seq a -> a
 rightmost :: (Eq a) => S.Seq a -> a
-leftmost seq  | (l S.:< _) <- S.viewl seq = l
-              | otherwise = error "empty sequence"
-rightmost seq | (_ S.:> r) <- S.viewr seq = r
-              | otherwise = error "empty sequence"
+leftmost s  | (l S.:< _) <- S.viewl s = l
+            | otherwise = error "empty sequence"
+rightmost s | (_ S.:> r) <- S.viewr s = r
+            | otherwise = error "empty sequence"
 
 -- this won't fail at all, but yeah, I just needed a delete
 delete :: (Eq a) => a -> S.Seq a -> S.Seq a
