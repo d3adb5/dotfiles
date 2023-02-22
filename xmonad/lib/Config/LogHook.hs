@@ -27,7 +27,7 @@ barPP = def
   }
   where
     hiddenNum = withHidden $ return . catchZero . length
-    catchZero l = if l == 0 then Nothing else Just $ replicate l '―'
+    catchZero l = if l == 0 then Nothing else Just $ replicate l '•'
 
 logHook :: X ()
 logHook = do
