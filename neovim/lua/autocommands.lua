@@ -18,8 +18,8 @@ autocmd({ "BufEnter", "BufWritePost" }, {
   group = "common"
 })
 
-autocmd({ "TextChangedI", "TextChanged" }, {
-  desc = "Attempt linting when changes were made to the text.",
+autocmd({ "BufWritePost" }, {
+  desc = "Attempt linting when files are written.",
   callback = function () lint.try_lint() end,
   group = "common"
 })
