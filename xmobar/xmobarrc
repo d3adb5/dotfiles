@@ -10,7 +10,7 @@ Config
     , position = Static {xpos = 0, ypos = 0, width = 2560, height = 20}
 
     , commands =
-        [ Run DateZone "%A, %B %d日 ~ %H:%M" "ja_JP.UTF-8" "" "date" 10
+        [ Run DateZone "%A, %m月 %d日 ~ %H:%M" "ja_JP.UTF-8" "" "date" 10
         , Run UnsafeStdinReader
 
         , Run Cpu
@@ -28,8 +28,6 @@ Config
         \<icon=.local/share/icons/xpm/mem.xpm/> %memory% \
         \<icon=.local/share/icons/xpm/vbar.xpm/> \
         \}%UnsafeStdinReader%{ \
-        \<action=`switch-sony-hfp`>\
-        \<icon=.local/share/icons/xpm/headphones.xpm/> </action>\
         \<action=`date-not`>\
         \<icon=.local/share/icons/xpm/date.xpm/> %date% </action>"
     }
