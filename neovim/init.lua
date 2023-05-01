@@ -50,6 +50,7 @@ require("packer").startup(function ()
   use { "dkarter/bullets.vim",    ft = "markdown" }
   use { "junegunn/goyo.vim",      ft = "markdown" }
   use { "hashivim/vim-terraform", ft = "terraform" }
+  use { "towolf/vim-helm",        ft = "yaml" }
   use { "keith/tmux.vim",         event = "VimEnter .tmux.conf" }
   use { "andrewstuart/vim-kubernetes" }
 
