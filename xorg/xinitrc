@@ -8,6 +8,8 @@ xsetroot -cursor_name left_ptr
 xsetroot -name xmonad
 hsetroot -solid "#1d1f21"
 
+dbus-update-activation-environment --systemd DISPLAY
+
 xrdb -merge "$HOME/.Xresources"
 xmodmap "$HOME/.Xmodmap"
 
@@ -15,7 +17,7 @@ xbanish -i mod4 &
 dunst -config "$HOME/.config/dunst/dunstrc" &
 sxhkd &
 picom -b
-fcitx -d
+fcitx5 -d
 
 udiskie &
 stalonetray &
