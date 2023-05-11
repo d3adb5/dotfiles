@@ -26,7 +26,7 @@ autocmd({ "BufWritePost" }, {
 
 autocmd({ "BufWritePost" }, {
   desc = "Run the 'make' program if it's set to something other than 'make'.",
-  command = "if &makeprg != 'make' | make | endif",
+  command = "if &makeprg != 'make' | silent make | endif",
   group = "common"
 })
 
