@@ -13,13 +13,13 @@ import Data.Ratio
 import XMonad.StackSet (RationalRect(..))
 
 centerIRect :: (Integral a) => a -> a -> a -> a -> RationalRect
-centerIRect w h sw sh = centerIRectOffsetXY 0 0 w h sw sh
+centerIRect = centerIRectOffsetXY 0 0
 
 centerIRectOffsetX :: (Integral a) => a -> a -> a -> a -> a -> RationalRect
-centerIRectOffsetX ox w h sw sh = centerIRectOffsetXY ox 0 w h sw sh
+centerIRectOffsetX ox = centerIRectOffsetXY ox 0
 
 centerIRectOffsetY :: (Integral a) => a -> a -> a -> a -> a -> RationalRect
-centerIRectOffsetY oy w h sw sh = centerIRectOffsetXY 0 oy w h sw sh
+centerIRectOffsetY = centerIRectOffsetXY 0
 
 centerIRectOffsetXY :: (Integral a) => a -> a -> a -> a -> a -> a -> RationalRect
 centerIRectOffsetXY ox oy w h sw sh = centerRRectOffsetXY orx ory rw rh
@@ -29,13 +29,13 @@ centerIRectOffsetXY ox oy w h sw sh = centerRRectOffsetXY orx ory rw rh
         rh = toInteger h % toInteger sh
 
 centerRRect :: Rational -> Rational -> RationalRect
-centerRRect rw rh = centerRRectOffsetXY 0 0 rw rh
+centerRRect = centerRRectOffsetXY 0 0
 
 centerRRectOffsetX :: Rational -> Rational -> Rational -> RationalRect
-centerRRectOffsetX ox rw rh = centerRRectOffsetXY ox 0 rw rh
+centerRRectOffsetX ox = centerRRectOffsetXY ox 0
 
 centerRRectOffsetY :: Rational -> Rational -> Rational -> RationalRect
-centerRRectOffsetY oy rw rh = centerRRectOffsetXY 0 oy rw rh
+centerRRectOffsetY = centerRRectOffsetXY 0
 
 centerRRectOffsetXY :: Rational -> Rational -> Rational -> Rational -> RationalRect
 centerRRectOffsetXY ox oy rw rh = RationalRect rx ry rw rh
