@@ -42,7 +42,7 @@ manageHook = composeAll
 scratchpads :: [NamedScratchpad]
 scratchpads =
   [ NS "term" "st -n scratch -t scratch -e tmux new -A -s scratch"
-    (title =? "scratch")
+    (appName =? "scratch")
     (customFloating $ centerIRectOffsetY panelHeight tw th sw sh)
   , NS "volume" "pavucontrol"
     (className =? "Pavucontrol")
