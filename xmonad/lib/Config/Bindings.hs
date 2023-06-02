@@ -17,7 +17,7 @@ import qualified XMonad.StackSet as W
 
 keyBindings :: [(String, X ())]
 keyBindings =
-  [ ("M-]", spawn =<< fmap (terminal . config) ask)
+  [ ("M-]", ask >>= spawn . terminal . config)
   , ("M-j", focusDown)
   , ("M-k", focusUp)
   , ("M-<R>", moveTo Next (WSIs . return $ (/= "NSP") . W.tag))
@@ -50,7 +50,7 @@ removedBindings :: [String]
 removedBindings = [ "M-p", "M-S-r" ]
 
 mouseBindings :: [((ButtonMask, Button), Window -> X ())]
-mouseBindings = [((mod4Mask, button3), (\w -> focus w >> mouseResizeWindow w))]
+mouseBindings = [((mod4Mask, button3), \w -> focus w >> mouseResizeWindow w)]
 
 notNSP :: [WorkspaceId] -> [WorkspaceId]
 notNSP = filter (/= "NSP")
