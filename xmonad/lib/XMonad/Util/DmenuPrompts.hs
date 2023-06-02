@@ -25,7 +25,7 @@ getLastLineFromProcess cmd args input = io $ do
   return $ last (lines output)
 
 menuArgs' :: String -> [String] -> [String] -> X String
-menuArgs' mcmd args opts = fmap (filter (/= '\n')) $
+menuArgs' mcmd args opts = filter (/= '\n') <$>
   getLastLineFromProcess mcmd args (unlines opts)
 
 dmenuArgs :: [String] -> [String] -> X String

@@ -17,7 +17,7 @@ import qualified XMonad.StackSet as W
 
 keyBindings :: [(String, X ())]
 keyBindings =
-  [ ("M-]", spawn =<< fmap (terminal . config) ask)
+  [ ("M-]", ask >>= spawn . terminal . config)
   , ("M-j", focusDown)
   , ("M-k", focusUp)
   , ("M-<R>", moveTo Next (WSIs . return $ (/= "NSP") . W.tag))
