@@ -10,6 +10,7 @@ import XMonad.Actions.FloatKeys (keysMoveWindowTo)
 import XMonad.Actions.Hidden
 import XMonad.Actions.PhysicalScreens
 import XMonad.Layout.BoringWindows (focusDown, focusUp)
+import XMonad.Util.DmenuPrompts (windowsMenu)
 import XMonad.Util.NamedScratchpad
 
 import qualified Config.ManageHook as MH
@@ -22,6 +23,7 @@ keyBindings =
   , ("M-k", focusUp)
   , ("M-<R>", moveTo Next (WSIs . return $ (/= "NSP") . W.tag))
   , ("M-<L>", moveTo Prev (WSIs . return $ (/= "NSP") . W.tag))
+  , ("M-a", windowsMenu "fzfmenu" >>= windows . W.focusWindow)
   , ("M-y", selectWorkspace' "fzfmenu" fzfmenuArgs)
   , ("M-u", renameWorkspace' "fzfmenu" fzfmenuArgs)
   , ("M-i", removeWorkspaceIfEmpty)
