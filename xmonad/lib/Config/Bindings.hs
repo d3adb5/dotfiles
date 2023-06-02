@@ -50,7 +50,7 @@ removedBindings :: [String]
 removedBindings = [ "M-p", "M-S-r" ]
 
 mouseBindings :: [((ButtonMask, Button), Window -> X ())]
-mouseBindings = [((mod4Mask, button3), (\w -> focus w >> mouseResizeWindow w))]
+mouseBindings = [((mod4Mask, button3), \w -> focus w >> mouseResizeWindow w)]
 
 notNSP :: [WorkspaceId] -> [WorkspaceId]
 notNSP = filter (/= "NSP")
