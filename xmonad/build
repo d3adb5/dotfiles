@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd "$XDG_CONFIG_HOME"/xmonad
+stack build :xmonad --ghc-options="-O2 -threaded" --verbosity error
+ln -f -T "$(stack exec -- which xmonad)" "$1"

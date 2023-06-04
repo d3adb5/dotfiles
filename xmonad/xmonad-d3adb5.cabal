@@ -1,4 +1,4 @@
-name:       custom-xmonad
+name:       xmonad-d3adb5
 version:    0.1.0
 license:    WTFPL
 author:     d3adb5
@@ -8,8 +8,8 @@ build-type:    Simple
 cabal-version: >=1.10
 
 executable xmonad
-  main-is: ../xmonad.hs
-  hs-source-dirs: lib
+  main-is: xmonad.hs
+  hs-source-dirs: src
 
   build-depends: base
                , containers
