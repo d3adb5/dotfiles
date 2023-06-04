@@ -20,7 +20,7 @@ barPP :: PP
 barPP = def
   { ppHidden = const "", ppHiddenNoWindows = const "", ppVisible = const ""
   , ppUrgent = const ""
-  , ppOrder = \(ws:_:_:rs) -> ws:rs
+  , ppOrder = \fields -> head fields : drop 2 (tail fields)
   , ppSep = " "
   , ppCurrent = id
   , ppExtras = [ hiddenNum ]
