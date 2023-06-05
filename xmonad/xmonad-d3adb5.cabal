@@ -15,6 +15,7 @@ executable xmonad
                , containers
                , data-default
                , process
+               , split
                , xmonad >= 0.17
                , xmonad-contrib >= 0.17
 
