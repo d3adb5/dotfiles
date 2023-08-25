@@ -13,6 +13,10 @@ jobs:
       - name: Checkout files in the repository
         uses: actions/checkout@v3
 
+      - uses: freckle/stack-cache-action@v2
+        with:
+          working-directory: xmonad
+
       - name: Setup Haskell & Stack
         uses: haskell/actions/setup@v2
         with:
@@ -20,24 +24,18 @@ jobs:
           stack-version: latest
           stack-no-global: true
 
-      - uses: actions/cache@v3
-        name: Cache ~/.stack
-        with:
-          path: ~/.stack
-          key: stack-global-${{ hashFiles('xmonad/stack.yaml') }}
-          restore-keys: |
-            stack-global-
-
-      - name: Cache .stack-work
-        uses: actions/cache@v3
-        with:
-          path: xmonad/.stack-work
-          key: stack-work-${{ hashFiles('xmonad/stack.yaml') }}-${{ hashFiles('**/*.hs') }}
-          restore-keys: |
-            stack-work-
-
       - name: Install XMonad C build dependencies
-        run: sudo apt-get install -y libx11-dev libxft-dev libxinerama-dev libxrandr-dev libxss-dev
+        run: sudo apt-get install -y
+          libx11-dev libxft-dev libxinerama-dev libxrandr-dev libxss-dev
+
+      - name: Setup GHC through Stack
+        run: stack setup
+        working-directory: xmonad
+
+      - name: Build project dependencies
+        run: stack build --only-dependencies
+        working-directory: xmonad
 
       - name: Build custom XMonad config
-        run: cd xmonad && stack build
+        run: stack build
+        working-directory: xmonad
