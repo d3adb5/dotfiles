@@ -24,10 +24,18 @@ jobs:
           stack-version: latest
           stack-no-global: true
 
-
-
       - name: Install XMonad C build dependencies
-        run: sudo apt-get install -y libx11-dev libxft-dev libxinerama-dev libxrandr-dev libxss-dev
+        run: sudo apt-get install -y
+          libx11-dev libxft-dev libxinerama-dev libxrandr-dev libxss-dev
+
+      - name: Setup GHC through Stack
+        run: stack setup
+        working-directory: xmonad
+
+      - name: Build project dependencies
+        run: stack build --only-dependencies
+        working-directory: xmonad
 
       - name: Build custom XMonad config
-        run: cd xmonad && stack build
+        run: stack build
+        working-directory: xmonad
