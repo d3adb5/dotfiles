@@ -29,6 +29,8 @@ export MOSH_ESCAPE_KEY='~'
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
 
+export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*'"
+
 # Makes sure '/' is not considered part of words for backward-kill-word.
 export WORDCHARS="${WORDCHARS/\/}"
 
