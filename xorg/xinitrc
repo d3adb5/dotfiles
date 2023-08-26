@@ -11,7 +11,6 @@ hsetroot -solid "#1d1f21"
 dbus-update-activation-environment --systemd DISPLAY
 
 xrdb -merge "$HOME/.Xresources"
-xkbcomp "$HOME/.config/xkb/custom-us.xkb" "$DISPLAY"
 
 xbanish -i mod4 &
 dunst -config "$HOME/.config/dunst/dunstrc" &
