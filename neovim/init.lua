@@ -53,6 +53,7 @@ require("packer").startup(function ()
   use { "towolf/vim-helm",        ft = "yaml" }
   use { "keith/tmux.vim",         event = "VimEnter .tmux.conf" }
   use { "andrewstuart/vim-kubernetes" }
+  use { "cappyzawa/starlark.vim" }
 
   use { "martinda/Jenkinsfile-vim-syntax", event = "VimEnter Jenkinsfile" }
 
