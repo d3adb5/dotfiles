@@ -102,6 +102,7 @@ require("lazy").setup({
       vim.g.NERDTreeIgnore = { "\\.hi$", "\\.o$", "\\.class$" }
     end,
 
+    enabled = false
   },
   -- }}}
   -- {{{ completion, linting, language servers
