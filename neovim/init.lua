@@ -146,7 +146,9 @@ require("lazy").setup({
           vim.fs.find({"gradlew", "pom.xml", ".git"}, { upward = true})[1]
         )
       })
-    end
+    end,
+
+    enabled = false
   }
   -- }}}
 })
