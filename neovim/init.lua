@@ -137,5 +137,16 @@ require("lazy").setup({
     end
   },
 
+  { "mfussenegger/nvim-jdtls",
+    ft = "java",
+    config = function ()
+      require("jdtls").start_or_attach({
+        cmd = {"/usr/bin/jdtls"},
+        root_dir = vim.fs.dirname(
+          vim.fs.find({"gradlew", "pom.xml", ".git"}, { upward = true})[1]
+        )
+      })
+    end
+  }
   -- }}}
 })
