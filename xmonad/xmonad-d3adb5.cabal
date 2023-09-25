@@ -1,39 +1,60 @@
-name:       xmonad-d3adb5
-version:    0.1.0
-license:    WTFPL
-author:     d3adb5
-maintainer: me@d3adb5.net
+cabal-version: 2.2
 
-build-type:    Simple
-cabal-version: >=1.10
+-- This file has been generated from package.yaml by hpack version 0.35.2.
+--
+-- see: https://github.com/sol/hpack
+
+name:           xmonad-d3adb5
+version:        0.1.0
+synopsis:       d3adb5's xmonad configuration
+description:    Please see the README on GitHub at <https://github.com/d3adb5/dotfiles#readme>
+category:       System
+homepage:       https://github.com/d3adb5/dotfiles#readme
+bug-reports:    https://github.com/d3adb5/dotfiles/issues
+author:         d3adb5
+maintainer:     me@d3adb5.net
+copyright:      2023 d3adb5
+license:        WTFPL
+build-type:     Simple
+
+source-repository head
+  type: git
+  location: https://github.com/d3adb5/dotfiles
 
 executable xmonad
   main-is: xmonad.hs
-  hs-source-dirs: src
-
-  build-depends: base
-               , containers
-               , data-default
-               , process
-               , split
-               , xmonad >= 0.17
-               , xmonad-contrib >= 0.17
-
-  other-modules: Config.Bindings
-               , Config.Dimensions
-               , Config.HandleEventHook
-               , Config.Layouts
-               , Config.LogHook
-               , Config.ManageHook
-               , Config.StartupHook
-               , XMonad.Actions.DmenuWorkspaces
-               , XMonad.Actions.Hidden
-               , XMonad.Layout.Hidden
-               , XMonad.Layout.HiddenQueueLayout
-               , XMonad.Layout.VoidBorders
-               , XMonad.Util.CenterRationalRect
-               , XMonad.Util.DmenuPrompts
-               , XMonad.Util.Hidden
-
+  other-modules:
+      Config.Bindings
+      Config.Dimensions
+      Config.HandleEventHook
+      Config.Layouts
+      Config.LogHook
+      Config.ManageHook
+      Config.StartupHook
+      XMonad.Actions.DmenuWorkspaces
+      XMonad.Actions.Hidden
+      XMonad.Actions.Pip
+      XMonad.Layout.BoringFloats
+      XMonad.Layout.Cards
+      XMonad.Layout.Hidden
+      XMonad.Layout.HiddenQueueLayout
+      XMonad.Layout.VoidBorders
+      XMonad.Util.CenterRationalRect
+      XMonad.Util.DmenuPrompts
+      XMonad.Util.Hidden
+      Paths_xmonad_d3adb5
+  autogen-modules:
+      Paths_xmonad_d3adb5
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Widentities -threaded -rtsopts -with-rtsopts=-N -O2 -j
+  build-depends:
+      base >=4.7 && <5
+    , containers ==0.6.*
+    , data-default ==0.7.*
+    , process ==1.*
+    , split ==0.2.*
+    , utility-ht ==0.0.*
+    , xmonad >=0.17
+    , xmonad-contrib >=0.17
   default-language: Haskell2010
-  ghc-options: -Wall -threaded -j -O2
