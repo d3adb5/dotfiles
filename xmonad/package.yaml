@@ -1,0 +1,36 @@
+name:        xmonad-d3adb5
+version:     0.1.0
+github:      d3adb5/dotfiles
+license:     WTFPL
+author:      d3adb5
+maintainer:  me@d3adb5.net
+copyright:   2023 d3adb5
+
+synopsis:    d3adb5's xmonad configuration
+category:    System
+description: Please see the README on GitHub at <https://github.com/d3adb5/dotfiles#readme>
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+
+executables:
+  xmonad:
+    main: xmonad.hs
+    source-dirs: src
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    - -O2
+    - -j
+    dependencies:
+    - base >= 4.7 && < 5
+    - containers == 0.6.*
+    - data-default == 0.7.*
+    - process == 1.*
+    - split == 0.2.*
+    - utility-ht == 0.0.*
+    - xmonad >= 0.17
+    - xmonad-contrib >= 0.17
