@@ -38,3 +38,9 @@ terminalLRatio lnum = verticalSpan % availableVerticalSpan
 -- | Calculates the horizontal ratio of a window given its width in pixels.
 horizontalRatio :: Integral a => a -> Ratio a
 horizontalRatio width = width % availableHorizontalSpan
+
+decorationSpan = borderWidth + terminalPadding
+
+columnsToWindowWidth, linesToWindowHeight :: Integral a => a -> a
+columnsToWindowWidth cols = cols * characterWidth + 2 * decorationSpan
+linesToWindowHeight  lins = lins * characterHeight + 2 * decorationSpan

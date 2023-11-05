@@ -5,7 +5,7 @@ import XMonad hiding (manageHook, borderWidth)
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageHelpers
 import XMonad.Util.CenterRationalRect
-import XMonad.Util.NamedScratchpad hiding (hook)
+import XMonad.Util.NamedScratchpad hiding (name, query, hook)
 import XMonad.Util.WindowProperties (getProp32s)
 import XMonad.StackSet (floating)
 
@@ -13,6 +13,7 @@ import qualified XMonad.Actions.DynamicWorkspaces as DW
 import qualified XMonad.StackSet as W
 
 import Config.Dimensions
+import Data.List (singleton)
 import Data.Map (member)
 import Data.Maybe (isJust)
 import Data.Ratio
@@ -40,18 +41,13 @@ manageHook = composeAll
       , ("WM_WINDOW_ROLE", "file-png") ]
 
 scratchpads :: [NamedScratchpad]
-scratchpads =
-  [ NS "term" "st -n scratch -t scratch -e tmux new -A -s scratch"
-    (appName =? "scratch")
-    (customFloating $ centerIRectOffsetY panelHeight tw th sw sh)
-  , NS "volume" "pavucontrol"
-    (className =? "Pavucontrol")
-    (customFloating $ centerIRectOffsetY panelHeight vw vh sw sh)
-  ]
-  where tw = 150 * characterWidth + 2 * (borderWidth + terminalPadding)
-        th =  40 * characterHeight + 2 * (borderWidth + terminalPadding)
-        (sw,sh) = (screenWidth, screenHeight)
-        (vw,vh) = (768,648)
+scratchpads = singleton $ NS name command query hook
+  where command = "st -n scratch -t scratch -e tmux new -A -s scratch"
+        hook = customFloating $ centerIRectOffsetY panelHeight tw th sw sh
+        (tw, th) = (columnsToWindowWidth 150, linesToWindowHeight 40)
+        (sw, sh) = (screenWidth, screenHeight)
+        query = appName =? "scratch"
+        name = "term"
 
 -- | Properly center a floating window in the available screen real estate.
 centerFloat :: ManageHook

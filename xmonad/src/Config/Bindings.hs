@@ -32,7 +32,6 @@ keyBindings =
   , ("M-M1-k", withFocused swapWithLastHidden)
   , ("M-M1-l", withLastHidden unhideWindow)
   , ("M-[", namedScratchpadAction MH.scratchpads "term")
-  , ("M-s v", namedScratchpadAction MH.scratchpads "volume")
   , ("M-C-y", chooseWorkspace >>= windows . copy)
   , ("M-<Backspace>", kill1)
   , ("M-S-y", withFocused $ moveToWorkspace' "fzfmenu" fzfmenuArgs)
