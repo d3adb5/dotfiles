@@ -21,8 +21,8 @@ import Data.Ratio
 manageHook :: ManageHook
 manageHook = composeAll
   [ namedScratchpadManageHook scratchpads
-  , classNameIn webClassNames --> moveToWorkspace "web"
   , classNameIn dcClassNames --> moveToWorkspace "chat"
+  , classNameIn mediaClassNames --> moveToWorkspace "media"
   , className =? "Gimp" --> moveToWorkspace "gimp"
   , composeOne $ hookClassNames centerFloat floatClassNames
               ++ hookPropValues centerFloat floatPropValues
@@ -30,8 +30,8 @@ manageHook = composeAll
                  , isDialog -?> centerFloat ]
   ]
   where
-    webClassNames = ["Tor Browser"]
     floatClassNames = ["Pqiv", "sun-awt-X11-XFramePeer", "Udiskie", "fzfmenu"]
+    mediaClassNames = ["Spotify", "plexmediaplayer"]
     dcClassNames = ["discord"]
     floatPropValues =
       [ ("WM_WINDOW_ROLE", "GtkFileChooserDialog")
