@@ -20,32 +20,28 @@ import qualified Config.Dimensions as D
 layoutHook
   = lessBorders OnlyScreenFloat
   . boringWindows
+  . avoidStruts
   . onWorkspaces ["chat"] (gridLayout ||| fullLayout)
   . onWorkspaces ["gimp", "media"] (fullLayout ||| threeLayout)
   . onWorkspaces ["float"] (floatLayout ||| gridLayout)
   $ threeLayout ||| fullLayout
 
 floatLayout
-  = avoidStruts
-  . normalBorders
+  = normalBorders
   . windowArrangeAll
   $ SF 0
 
 gridLayout
-  = avoidStruts
-  . normalBorders
-  $ Grid
+  = normalBorders Grid
 
 threeLayout
-  = avoidStruts
-  . reflectHoriz
+  = reflectHoriz
   . hideNAt 2 3
   . normalBorders
   $ ThreeColMid 1 (3/100) (1/2)
 
 fullLayout
   = voidBorders
-  . avoidStruts
   . spacingRaw False (borderAll 0) True windowBorder False
   $ Full
 
