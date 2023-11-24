@@ -1,3 +1,0 @@
-resolver: lts-21.13
-packages:
-  - "."
