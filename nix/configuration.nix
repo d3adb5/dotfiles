@@ -7,6 +7,8 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -21,6 +23,8 @@
   #   keyMap = "us";
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
+
+  hardware.keyboard.qmk.enable = true;
 
   nix.package = pkgs.nixFlakes;
   nix.extraOptions = "experimental-features = nix-command flakes";
@@ -46,6 +50,8 @@
 
     layout = "us";
     xkbVariant = "intl";
+
+    dpi = 76;
   };
 
   # Enable CUPS to print documents.
@@ -68,18 +74,15 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim
-    firefox
     file
     tree
-    git
-    kitty
     plex-media-player
   ];
 
-  programs.hyprland.enable = true;
-  programs.fzf.fuzzyCompletion = true;
-  programs.fzf.keybindings = true;
+  environment.pathsToLink = [
+    "/share/zsh"
+  ];
+
   programs.zsh.enable = true;
 
   # Copy the NixOS configuration file and link it from the resulting system

@@ -8,6 +8,22 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
+  # Configure GDM to use 100 Hz for the LG ultrawide monitor.
+  home-manager.users.gdm = {
+    home.stateVersion = "23.05";
+    home.file.".config/monitors.xml".text = ''
+      <monitors version="2">
+        <configuration>
+          <clone>no</clone>
+          <output name="DP-1">
+            <rate>100.0</rate>
+            <primary>yes</primary>
+          </output>
+        </configuration>
+      </monitors>
+    '';
+  };
+
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
