@@ -14,7 +14,7 @@ in {
   home.username = "d3adb5";
   home.homeDirectory = "/home/d3adb5";
 
-  home.packages = with pkgs; [ home-manager stack bat qmk custom-st ];
+  home.packages = with pkgs; [ home-manager stack bat qmk custom-st xclip ];
 
   home.stateVersion = "23.05";
 
