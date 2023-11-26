@@ -71,6 +71,10 @@ in {
     profiles.d3adb5 = {
       id = 0;
       isDefault = true;
+
+      userChrome = builtins.readFile ../firefox/userChrome.css;
+      settings."toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         vimium ublock-origin sponsorblock
         extra-ff-addons.hide-scrollbars
