@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request: {}
+
+jobs:
+  build-qmk:
+    name: Build QMK Firmware
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: d3adb5/build-qmk-fw@v1
+        with:
+          keyboard: dztech/dz65rgb/v3
+          keymap: dz65rgbv3
+          local-keymap-path: qmk/dz65rgbv3
+          output-dir: qmk/build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qmk-dz65rgb-v3
+          path: qmk/build
