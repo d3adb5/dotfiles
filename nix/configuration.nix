@@ -88,6 +88,8 @@
     file
     tree
     plex-media-player
+    pinentry
+    pinentry-curses
   ];
 
   environment.pathsToLink = [

@@ -22,6 +22,14 @@ in {
   programs.gpg.enable = true;
   programs.mpv.enable = true;
 
+  services.gpg-agent = {
+    enable = true;
+    enableZshIntegration = true;
+    pinentryFlavor = "curses";
+    defaultCacheTtl = 60;
+    maxCacheTtl = 120;
+  };
+
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
