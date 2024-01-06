@@ -19,8 +19,10 @@ in {
   home.stateVersion = "23.05";
 
   programs.home-manager.enable = true;
-  programs.gpg.enable = true;
+  programs.password-store.enable = true;
   programs.mpv.enable = true;
+  programs.gpg.enable = true;
+  programs.pqiv.enable = true;
 
   programs.tmux = {
     enable = true;
