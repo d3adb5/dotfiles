@@ -40,6 +40,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  services.devmon.enable = true;
+
   services.xserver = {
     enable = true;
 
@@ -93,6 +95,7 @@
   ];
 
   programs.zsh.enable = true;
+  programs.mosh.enable = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
