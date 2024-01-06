@@ -22,6 +22,14 @@ in {
   programs.gpg.enable = true;
   programs.mpv.enable = true;
 
+  programs.tmux = {
+    enable = true;
+    escapeTime = 0;
+    terminal = "tmux-256color";
+    plugins = with pkgs.tmuxPlugins; [ pain-control sessionist ];
+    extraConfig = builtins.readFile ../tmux/tmux.conf;
+  };
+
   services.gpg-agent = {
     enable = true;
     enableZshIntegration = true;
