@@ -24,6 +24,12 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
+  fonts.fontconfig.defaultFonts = {
+    monospace = [ "DejaVu Sans Mono" "IPAGothic" ];
+    sansSerif = [ "Liberation Sans" "IPAGothic" ];
+    serif = [ "DejaVu Serif" "IPAMincho" ];
+  };
+
   hardware.keyboard.qmk.enable = true;
 
   hardware.bluetooth.enable = true;
