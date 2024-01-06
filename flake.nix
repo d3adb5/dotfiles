@@ -11,22 +11,15 @@
   outputs = { nixpkgs, home-manager, nur, ... }: rec {
     nixosConfigurations.optiplex = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [
-        nur.nixosModules.nur
-        home-manager.nixosModules.home-manager
-        { nixpkgs.overlays = [nur.overlay]; }
-
-        ./nix/configuration.nix
-        ({config, pkgs, ...}: {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.d3adb5 = import ./nix/home.nix;
-        })
-      ];
+      modules = [./nix/configuration.nix];
     };
 
-    homeConfigurations = {
-      d3adb5 = nixosConfigurations.optiplex.config.home-manager.users.d3adb5.home;
+    homeConfigurations.d3adb5 = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      modules = [
+        { nixpkgs.overlays = [nur.overlay]; }
+        ./nix/home.nix
+      ];
     };
   };
 }
