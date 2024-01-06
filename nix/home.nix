@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{config, pkgs, ...}:
 let
   custom-st = pkgs.st.overrideAttrs (oldAttrs: rec {
     src = pkgs.fetchFromGitHub {
@@ -97,5 +97,13 @@ in {
       mark-wmwin-focused = true;
       mark-ovredir-focused = true;
     };
+  };
+
+  home.pointerCursor = {
+    package = pkgs.xorg.xcursorthemes;
+    name = "Neutral";
+    size = 16;
+    x11.enable = true;
+    gtk.enable = true;
   };
 }
