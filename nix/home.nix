@@ -45,6 +45,18 @@ in {
     defaultKeymap = "vicmd";
   };
 
+  xdg.enable = true;
+  xdg.userDirs = {
+    enable = true;
+    documents = "${config.home.homeDirectory}/documents";
+    download = "${config.home.homeDirectory}/downloads";
+    desktop = "${config.home.homeDirectory}/desktop";
+    music = "${config.home.homeDirectory}/music";
+    pictures = "${config.home.homeDirectory}/pictures";
+    templates = "${config.home.homeDirectory}/templates";
+    videos = "${config.home.homeDirectory}/videos";
+  };
+
   programs.ssh.enable = true;
   programs.ssh.serverAliveInterval = 30;
   programs.ssh.matchBlocks = {
