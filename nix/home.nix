@@ -43,8 +43,18 @@ in {
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
-    enableCompletion = true;
-    defaultKeymap = "vicmd";
+    enableCompletion = false;
+    syntaxHighlighting.enable = true;
+    initExtra = ''
+      for configFile in "$XDG_CONFIG_HOME"/zsh/*; do
+        source "$configFile"
+      done
+    '';
+  };
+
+  xdg.configFile.zsh = {
+    source = ../zsh/conf.d;
+    recursive = true;
   };
 
   xdg.enable = true;
