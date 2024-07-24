@@ -28,8 +28,11 @@ Config
         \<icon=.local/share/icons/xpm/mem.xpm/> %memory% \
         \<icon=.local/share/icons/xpm/vbar.xpm/> \
         \}%UnsafeStdinReader%{ \
-        \<action=`date-not`>\
-        \<icon=.local/share/icons/xpm/date.xpm/> %date% </action>"
+        \<icon=.local/share/icons/xpm/vbar.xpm/> \
+        \<icon=.local/share/icons/xpm/date.xpm/> %date% \
+        \<icon=.local/share/icons/xpm/vbar.xpm/> \
+        \<action=`kill -s USR1 $(pidof deadd-notification-center)`>\
+        \<icon=.local/share/icons/xpm/notification.xpm/> </action>"
     }
 
 -- vim: set filetype=haskell syntax=haskell :
