@@ -43,3 +43,6 @@ path+=(
 )
 
 export PATH
+
+# Make sure ~/.local/bin precedes everything else in PATH.
+export PATH="$HOME/.local/bin:$PATH"
