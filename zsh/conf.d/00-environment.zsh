@@ -13,7 +13,7 @@ export GPG_TTY=$(tty)
 export CC=/usr/bin/gcc
 export CXX=/usr/bin/g++
 
-export MAKEFLAGS=-j5
+export MAKEFLAGS="-j$(($(nproc) + 1))"
 export CFLAGS=" -O3 -march=native "
 export CXXFLAGS=" -O3 -march=native "
 
