@@ -2,6 +2,9 @@ function hl(name, val)
   vim.api.nvim_set_hl(0, name, val)
 end
 
+-- There's a new default colorscheme for Neovim >=0.10.
+vim.cmd.colorscheme("vim")
+
 hl("CursorLine",   { ctermbg =  0 })
 hl("CursorLineNr", { ctermfg = 11, ctermbg = 0})
 hl("NormalFloat",  {})
