@@ -5,7 +5,7 @@ export SAVEHIST=1000000
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 export EDITOR=nvim
-export BROWSER=firefox
+export BROWSER=firefox-esr
 export NO_AT_BRIDGE=1
 
 export GPG_TTY=$(tty)
