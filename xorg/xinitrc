@@ -21,4 +21,7 @@ fcitx5 -d
 udiskie &
 stalonetray &
 
+xset -dpms
+xset s off
+
 exec xmonad
