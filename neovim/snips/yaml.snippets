@@ -1,0 +1,66 @@
+snippet app "Argo CD application" b
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ${1:app-name}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: ${2:default}
+
+  source:
+    repoURL: ${3:repository-url}
+    targetRevision: ${4:branch-or-tag}
+    chart: ${5:$1}
+
+    helm:
+      valuesObject:
+        ${0:testing: something}
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ${7:namespace}
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+endsnippet
+
+snippet appPlusRepo "Argo CD application that also grabs from repo" b
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ${1:app-name}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: ${2:default}
+
+  sources:
+    - repoURL: {{ .Values.repository.url }}
+      targetRevision: HEAD
+      path: ${3:chart-path}
+      ref: repository
+
+    - repoURL: ${4:repository-url}
+      targetRevision: ${5:branch-or-tag}
+      chart: ${6:chart-name}
+
+      helm:
+        valueFiles:
+          - $repository/${8:values-path}/values.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ${9:namespace}
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+endsnippet
