@@ -1,5 +1,4 @@
 local cmp = require("cmp")
-local lsp = require("lspconfig")
 local cap = require("cmp_nvim_lsp").default_capabilities()
 
 local on_attach = function (client, bufnr)
@@ -26,13 +25,12 @@ cmp.setup({
   }
 })
 
-lsp.groovyls.setup({ on_attach = on_attach, capabilities = cap })
-lsp.pyright.setup({ on_attach = on_attach, capabilities = cap })
-lsp.terraformls.setup({ on_attach = on_attach, capabilities = cap })
-lsp.hls.setup({ on_attach = on_attach, capabilities = cap })
-lsp.lua_ls.setup({ on_attach = on_attach, capabilities = cap })
-lsp.gopls.setup({ on_attach = on_attach, capabilities = cap })
-lsp.clangd.setup({ on_attach = on_attach, capabilities = cap })
-lsp.helm_ls.setup({ on_attach = on_attach, capabilities = cap })
-lsp.bashls.setup({ on_attach = on_attach, capabilities = cap })
-lsp.ltex.setup({ on_attach = on_attach, capabilities = cap })
+local servers = {
+  "groovyls", "pyright", "terraformls", "hls", "lua_ls",
+  "gopls", "clangd", "helm_ls", "bashls"
+}
+
+for _, lsp in ipairs(servers) do
+  vim.lsp.config(lsp, { on_attach = on_attach, capabilities = cap })
+  vim.lsp.enable(lsp)
+end

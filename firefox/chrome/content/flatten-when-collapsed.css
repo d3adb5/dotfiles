@@ -1,0 +1,12 @@
+@-moz-document regexp("^moz-extension://.*?/sidebar/sidebar.html")
+{
+  @media (max-width: 40px) {
+    .Tab {
+      padding-left: 0 !important;
+    }
+  }
+
+  .bottom-space {
+    display: none !important;
+  }
+}

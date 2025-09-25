@@ -1,7 +1,7 @@
 [global]
   font = DejaVu Sans Mono 9.1
 
-  follow      = keyboard
+  follow = mouse
 
   width  = 300
   height = 200
