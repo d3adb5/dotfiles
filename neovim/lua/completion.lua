@@ -27,7 +27,7 @@ cmp.setup({
 
 local servers = {
   "groovyls", "pyright", "terraformls", "hls", "lua_ls",
-  "gopls", "clangd", "helm_ls", "bashls", "ltex"
+  "gopls", "clangd", "helm_ls", "bashls"
 }
 
 for _, lsp in ipairs(servers) do
