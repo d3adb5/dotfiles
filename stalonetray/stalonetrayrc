@@ -1,6 +1,7 @@
 icon_size    16
 geometry     1x1-205+1
 max_geometry 0x0
+monitor      1
 
 background  "#1d1f21"
 transparent false
