@@ -13,3 +13,11 @@ header-includes:
 
 ${0:Content}
 endsnippet
+
+snippet mblog "microblog shortcode" b
+{{< microblog date="`date '+%Y-%m-%d - %H:%M'`" >}}
+
+${0:Content}
+
+{{< /microblog >}}
+endsnippet
