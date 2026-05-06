@@ -11,12 +11,6 @@ autocmd({ "VimLeave" }, {
   group = "common"
 })
 
-autocmd({ "BufEnter", "BufWritePost" }, {
-  desc = "Obtain the Git branch the file belongs to, if any.",
-  callback = set_git_branch_var,
-  group = "common"
-})
-
 autocmd({ "BufWritePost" }, {
   desc = "Run the 'make' program if it's set to something other than 'make'.",
   command = "if &makeprg != 'make' | silent make | endif",

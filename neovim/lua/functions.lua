@@ -1,17 +1,8 @@
-function get_git_branch()
-  local git_command = "git status --porcelain -b " .. vim.fn.expand("%")
-    .. " 2>/dev/null | tr . ' ' | sed 1q | awk '{print $2}' | tr -d '\n'"
-
-  local process = assert(io.popen(git_command, "r"))
-  local output  = assert(process:read('*a'))
-
-  process:close()
-
-  return output
-end
-
-function set_git_branch_var()
-  vim.b.gitbranch = get_git_branch()
+function _G.statusline_git_branch()
+  if vim.fn.exists("*FugitiveHead") == 1 then
+    return vim.fn.FugitiveHead()
+  end
+  return ""
 end
 
 function in_a_git_repo()

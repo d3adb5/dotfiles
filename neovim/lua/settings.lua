@@ -41,5 +41,5 @@ buffer.textwidth   = 80
 
 buffer.formatoptions = "tcroqnj"
 
-global.statusline = "%#PmenuSel# %{b:gitbranch} %#FileName# %<%f %m %="
+global.statusline = "%#PmenuSel# %{v:lua.statusline_git_branch()} %#FileName# %<%f %m %="
   .. "%#PmenuSel# %y %6(L%l%) %-6(C%v%) %P "
