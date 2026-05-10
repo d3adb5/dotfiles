@@ -26,7 +26,7 @@ cmp.setup({
 })
 
 local servers = {
-  "groovyls", "pyright", "terraformls", "hls", "lua_ls",
+  "groovyls", "pyright", "terraformls", "lua_ls",
   "gopls", "clangd", "helm_ls", "bashls"
 }
 
@@ -34,3 +34,23 @@ for _, lsp in ipairs(servers) do
   vim.lsp.config(lsp, { on_attach = on_attach, capabilities = cap })
   vim.lsp.enable(lsp)
 end
+
+local hls_cap = vim.tbl_deep_extend("force", cap, {
+  workspace = {
+    didChangeWatchedFiles    = { dynamicRegistration = true },
+    didChangeConfiguration   = { dynamicRegistration = true },
+  }
+})
+
+vim.lsp.config("hls", {
+  on_attach    = on_attach,
+  capabilities = hls_cap,
+  settings     = {
+    haskell = {
+      plugin = {
+        semanticTokens = { globalOn = true }
+      }
+    }
+  }
+})
+vim.lsp.enable("hls")
