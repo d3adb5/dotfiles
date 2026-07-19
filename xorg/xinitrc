@@ -12,7 +12,7 @@ dbus-update-activation-environment --systemd DISPLAY
 
 xrdb -merge "$HOME/.Xresources"
 
-xbanish -i mod4 &
+unclutter --timeout 15 -b
 dunst -config "$HOME/.config/dunst/dunstrc" &
 sxhkd &
 picom -b
