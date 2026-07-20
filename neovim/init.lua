@@ -50,7 +50,7 @@ require("lazy").setup({
   { "tpope/vim-markdown",     ft = "markdown" },
   { "dkarter/bullets.vim",    ft = "markdown" },
   { "junegunn/goyo.vim",      ft = "markdown" },
-  { "hashivim/vim-terraform", ft = "terraform" },
+  { "hashivim/vim-terraform", ft = { "terraform", "terraform-vars" } },
   { "towolf/vim-helm",        ft = "yaml" },
   { "keith/tmux.vim",         event = "VimEnter .tmux.conf" },
 
@@ -185,3 +185,7 @@ require("lazy").setup({
   }
   -- }}}
 })
+
+-- vim-terraform's ftdetect forces *.tfvars to 'terraform'; drop that autocmd
+-- so Neovim's builtin detection sets 'terraform-vars' instead.
+vim.api.nvim_clear_autocmds({ group = "filetypedetect", pattern = "*.tfvars" })
