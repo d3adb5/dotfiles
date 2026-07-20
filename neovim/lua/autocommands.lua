@@ -19,8 +19,34 @@ autocmd({ "BufWritePost" }, {
 
 autocmd({ "FileType" }, {
   desc = "Autoformat paragraphs when editing Markdown or commit messages.",
-  command = "set formatoptions+=a",
+  command = "setlocal formatoptions+=a",
   pattern = "markdown,gitcommit",
+  group = "common"
+})
+
+autocmd({ "FileType" }, {
+  desc = "Keep gq and insert-mode wrapping out of Markdown code blocks.",
+  command = "setlocal formatexpr=v:lua.markdown_formatexpr()",
+  pattern = "markdown",
+  group = "common"
+})
+
+autocmd({ "CursorMoved", "CursorMovedI", "InsertEnter" }, {
+  desc = "Suspend paragraph autoformatting while inside Markdown code blocks.",
+  callback = function ()
+    if vim.bo.filetype ~= "markdown" then return end
+
+    local line = vim.api.nvim_win_get_cursor(0)[1]
+    if markdown_lines_in_code_block(line, line) then
+      if vim.bo.formatoptions:find("a") then
+        vim.opt_local.formatoptions:remove("a")
+        vim.b.autoformat_suspended = true
+      end
+    elseif vim.b.autoformat_suspended then
+      vim.opt_local.formatoptions:append("a")
+      vim.b.autoformat_suspended = nil
+    end
+  end,
   group = "common"
 })
 
